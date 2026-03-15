@@ -599,14 +599,25 @@ function showTestQuestion() {
     document.getElementById('test-total').textContent = currentDeck.cards.length;
     document.getElementById('question-text').textContent = card.front;
     
-    // Simple multiple choice - for now just show the answer with other cards mixed in
-    const options = currentDeck.cards.map(c => c.back).sort(() => Math.random() - 0.5);
     const correctAnswer = card.back;
+    
+    // Get other answers from different cards
+    const otherAnswers = currentDeck.cards
+        .filter(c => c.back !== correctAnswer)
+        .map(c => c.back);
+    
+    // Randomly select 3 incorrect options (or fewer if not enough cards)
+    const numIncorrect = Math.min(3, otherAnswers.length);
+    const shuffledOthers = otherAnswers.sort(() => Math.random() - 0.5);
+    const incorrectOptions = shuffledOthers.slice(0, numIncorrect);
+    
+    // Combine correct answer with incorrect options and shuffle
+    const options = [correctAnswer, ...incorrectOptions].sort(() => Math.random() - 0.5);
     
     const answerOptions = document.getElementById('answer-options');
     answerOptions.innerHTML = '';
     
-    options.slice(0, 4).forEach(answer => {
+    options.forEach(answer => {
         const btn = document.createElement('button');
         btn.className = 'answer-option btn';
         btn.textContent = answer;
