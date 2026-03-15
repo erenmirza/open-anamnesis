@@ -35,15 +35,12 @@ pip install -e .
 
 Follow these steps to create your first Anamnesis flashcard project.
 
-### Step 1: Create a Repository
+### Step 1: Create a Project Directory
 
 ```bash
 # Create a new directory for your project
 mkdir my_study_project
 cd my_study_project
-
-# Initialize git (optional but recommended)
-git init
 ```
 
 ### Step 2: Setup Python Virtual Environment
