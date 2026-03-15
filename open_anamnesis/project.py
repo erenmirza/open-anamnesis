@@ -1,0 +1,101 @@
+"""
+Project module - represents an Anamnesis flashcard project
+"""
+
+import json
+from pathlib import Path
+from typing import Dict, List, Any
+import yaml
+
+
+class Project:
+    """Represents an Anamnesis project containing decks and cards."""
+    
+    def __init__(self, root_path: str):
+        self.root_path = Path(root_path)
+        self.config_file = self.root_path / "project.yml"
+        self.decks_dir = self.root_path / "decks"
+        self.config = self._load_config()
+    
+    def _load_config(self) -> Dict[str, Any]:
+        """Load project configuration from project.yml"""
+        if self.config_file.exists():
+            with open(self.config_file, "r") as f:
+                return yaml.safe_load(f) or {}
+        return {}
+    
+    def get_project_metadata(self) -> Dict[str, Any]:
+        """Get project metadata from configuration"""
+        return {
+            "name": self.config.get("name", "Anamnesis Project"),
+            "description": self.config.get("description", ""),
+            "version": self.config.get("version", "0.1.0"),
+        }
+    
+    def list_decks(self) -> List[str]:
+        """List all deck directories in the project"""
+        if not self.decks_dir.exists():
+            return []
+        return [d.name for d in self.decks_dir.iterdir() if d.is_dir()]
+    
+    @staticmethod
+    def create_new(project_name: str) -> "Project":
+        """Create a new Anamnesis project"""
+        project_path = Path(project_name)
+        project_path.mkdir(exist_ok=True)
+        
+        # Create directories
+        (project_path / "decks").mkdir(exist_ok=True)
+        (project_path / "build").mkdir(exist_ok=True)
+        
+        # Create project.yml
+        project_config = {
+            "name": project_name,
+            "description": "My Anamnesis flashcard project",
+            "version": "0.1.0",
+        }
+        
+        with open(project_path / "project.yml", "w", encoding="utf-8") as f:
+            yaml.dump(project_config, f, default_flow_style=False)
+        
+        # Create .gitignore
+        gitignore_content = """# Anamnesis build artifacts
+build/
+dist/
+*.pyc
+__pycache__/
+.Python
+*.egg-info/
+.DS_Store
+.env
+venv/
+"""
+        with open(project_path / ".gitignore", "w", encoding="utf-8") as f:
+            f.write(gitignore_content)
+        
+        # Create example deck structure
+        example_deck = project_path / "decks" / "getting_started"
+        example_deck.mkdir(exist_ok=True)
+        
+        # Create deck.yml
+        deck_config = {
+            "name": "Getting Started",
+            "description": "Your first deck",
+            "depends_on": [],
+        }
+        
+        with open(example_deck / "deck.yml", "w", encoding="utf-8") as f:
+            yaml.dump(deck_config, f, default_flow_style=False)
+        
+        # Create example card
+        example_card = {
+            "id": "card_001",
+            "front": "What is Anamnesis?",
+            "back": "Anamnesis is a platform for building and managing flashcard projects with dependency management.",
+            "tags": ["getting_started"],
+        }
+        
+        with open(example_deck / "cards.json", "w", encoding="utf-8") as f:
+            json.dump([example_card], f, indent=2)
+        
+        return Project(str(project_path))
