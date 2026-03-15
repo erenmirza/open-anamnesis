@@ -31,31 +31,77 @@ cd open-anamnesis
 pip install -e .
 ```
 
-## 🚀 Quick Start
+## 🚀 Getting Started
 
-### 1. Initialize a New Project
+Follow these steps to create your first Anamnesis flashcard project.
+
+### Step 1: Create a Repository
 
 ```bash
-anamnesis init my_study_project
+# Create a new directory for your project
+mkdir my_study_project
 cd my_study_project
+
+# Initialize git (optional but recommended)
+git init
 ```
 
-This creates a project structure:
+### Step 2: Setup Python Virtual Environment
+
+```bash
+# Create a virtual environment
+python -m venv venv
+
+# Activate it
+# On Windows:
+venv\Scripts\activate
+
+# On macOS/Linux:
+source venv/bin/activate
+```
+
+You should see `(venv)` prefix in your terminal, indicating the virtual environment is active.
+
+### Step 3: Install Anamnesis
+
+```bash
+pip install open-anamnesis
+```
+
+Verify installation:
+```bash
+anamnesis --version
+```
+
+### Step 4: Initialize Your Project
+
+```bash
+anamnesis init my_project
+cd my_project
+```
+
+This creates your project structure:
 
 ```
-my_study_project/
-├── project.yml          # Project metadata
-├── decks/               # Your decks directory
-│   └── getting_started/
-│       ├── deck.yml     # Deck metadata
-│       └── cards.json   # Cards data
-└── build/               # Generated build artifacts (created by anamnesis-build)
+my_project/
+├── project.yml              # Project metadata
+├── .gitignore               # Git ignore file
+├── decks/                   # Your decks directory
+│   └── getting_started/     # Example deck
+│       ├── deck.yml         # Deck metadata
+│       └── cards.json       # Flashcards
+└── build/                   # Generated build artifacts
 ```
 
-### 2. Create Your Decks and Cards
+### Step 5: Create Your Decks
 
-Edit `decks/your_deck/deck.yml`:
+Create a new deck by adding a directory under `decks/`:
 
+```bash
+mkdir decks/python_basics
+```
+
+Create `decks/python_basics/deck.yml`:
 ```yaml
 name: "Python Basics"
 description: "Learn Python fundamentals"
@@ -63,8 +109,7 @@ depends_on:
   - getting_started
 ```
 
-Edit `decks/your_deck/cards.json`:
-
+Create `decks/python_basics/cards.json`:
 ```json
 [
   {
@@ -84,33 +129,66 @@ Edit `decks/your_deck/cards.json`:
 ]
 ```
 
-### 3. Validate Your Project
+### Step 6: Validate Your Project
+
+Compile your project to validate all files:
 
 ```bash
 anamnesis-compile
 ```
 
-Output:
+Expected output:
 ```
 ✓ Compilation successful!
-  - Validated 2 deck(s)
-  - Validated 15 card(s)
+  - Validated 3 deck(s)
+  - Validated 12 card(s)
   - No errors found
 ```
 
-### 4. Build and Launch
+If there are errors, the compiler will show you exactly what to fix.
+
+### Step 7: Build and Launch
+
+Generate the web interface and start the learning platform:
 
 ```bash
 anamnesis-build
 ```
 
-This generates a web interface and starts a local server at `http://127.0.0.1:5000`
-
+Expected output:
 ```
 ✓ Build successful!
   Web interface generated in 'build/' directory
-  Starting development server at http://127.0.0.1:5000
+  Starting server at http://127.0.0.1:5000
   Press Ctrl+C to exit
+```
+
+Open your browser to **http://127.0.0.1:5000** and start learning! 🎓
+
+## ✨ Quick Example Workflow
+
+```bash
+# 1. Create project
+mkdir biology_study && cd biology_study
+
+# 2. Virtual environment
+python -m venv venv && source venv/bin/activate  # Linux/Mac
+# Or: venv\Scripts\activate  # Windows
+
+# 3. Install
+pip install open-anamnesis
+
+# 4. Initialize
+anamnesis init .
+
+# 5. Edit your decks (create decks/your_deck/deck.yml and cards.json)
+
+# 6. Validate
+anamnesis-compile
+
+# 7. Build and learn
+anamnesis-build
+# Visit http://127.0.0.1:5000
 ```
 
 ## 📚 Project Structure
