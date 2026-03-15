@@ -1,0 +1,37 @@
+[
+  {
+    "id": "func_001",
+    "front": "What is a function?",
+    "back": "A reusable block of code that performs a specific task. Defined with the def keyword.",
+    "tags": ["functions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "func_002",
+    "front": "What is the difference between parameters and arguments?",
+    "back": "Parameters are variables in the function definition. Arguments are the actual values passed to the function.",
+    "tags": ["functions"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "func_003",
+    "front": "What is a default parameter?",
+    "back": "A parameter with a default value used if no argument is provided. Example: def greet(name='World'):",
+    "tags": ["functions"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "func_004",
+    "front": "What does *args do?",
+    "back": "Allows a function to accept any number of positional arguments as a tuple.",
+    "tags": ["functions", "advanced"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "func_005",
+    "front": "What does **kwargs do?",
+    "back": "Allows a function to accept any number of keyword arguments as a dictionary.",
+    "tags": ["functions", "advanced"],
+    "difficulty": "hard"
+  }
+]

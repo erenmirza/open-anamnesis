@@ -1,0 +1,37 @@
+[
+  {
+    "id": "oop_001",
+    "front": "What is a class?",
+    "back": "A blueprint for creating objects. It defines methods and attributes that objects will have.",
+    "tags": ["oop", "classes"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "oop_002",
+    "front": "What is self in Python?",
+    "back": "A reference to the instance of the class. Used inside methods to access instance variables.",
+    "tags": ["oop", "classes"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "oop_003",
+    "front": "What is the __init__ method?",
+    "back": "The constructor method that initializes an object when it's created.",
+    "tags": ["oop", "classes"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "oop_004",
+    "front": "What is inheritance?",
+    "back": "A way for a class to inherit attributes and methods from another class.",
+    "tags": ["oop", "inheritance"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "oop_005",
+    "front": "What is polymorphism?",
+    "back": "The ability of objects to take multiple forms or the ability to use the same interface for different data types.",
+    "tags": ["oop", "advanced"],
+    "difficulty": "hard"
+  }
+]

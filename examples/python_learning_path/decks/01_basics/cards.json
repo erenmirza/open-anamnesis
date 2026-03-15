@@ -1,0 +1,37 @@
+[
+  {
+    "id": "basics_001",
+    "front": "What is Python?",
+    "back": "Python is a high-level, interpreted programming language known for its simplicity and readability.",
+    "tags": ["python", "introduction"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "basics_002",
+    "front": "What are the naming conventions for variables?",
+    "back": "Use lowercase letters, underscores for word separation. Example: my_variable. Avoid reserved keywords.",
+    "tags": ["variables", "syntax"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "basics_003",
+    "front": "What is the difference between == and is?",
+    "back": "== checks value equality, is checks if they are the same object in memory.",
+    "tags": ["operators", "comparison"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "basics_004",
+    "front": "What is a list in Python?",
+    "back": "An ordered collection of items that can be modified. Created with square brackets: [1, 2, 3]",
+    "tags": ["data-structures"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "basics_005",
+    "front": "What is a dictionary?",
+    "back": "An unordered collection of key-value pairs. Created with curly braces: {'key': 'value'}",
+    "tags": ["data-structures"],
+    "difficulty": "easy"
+  }
+]
