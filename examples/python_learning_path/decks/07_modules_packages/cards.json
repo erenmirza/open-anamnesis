@@ -1,0 +1,107 @@
+[
+  {
+    "id": "mod_001",
+    "front": "What is a module in Python?",
+    "back": "A file containing Python code (functions, classes, variables). Names match filename without .py",
+    "tags": ["modules"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "mod_002",
+    "front": "How do you import a module?",
+    "back": "import module_name or from module import name. Use 'as' alias: import numpy as np",
+    "tags": ["modules"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "mod_003",
+    "front": "What is the difference between import and from import?",
+    "back": "import math: use math.sqrt(). from math import sqrt: use sqrt() directly. from avoids polluting namespace.",
+    "tags": ["modules"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "mod_004",
+    "front": "What is a package in Python?",
+    "back": "A directory containing __init__.py file and modules. Allows organizing related modules hierarchically.",
+    "tags": ["packages"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "mod_005",
+    "front": "What is __init__.py?",
+    "back": "Makes a directory a package. Can be empty or contain initialization code. Executed when package is imported.",
+    "tags": ["packages"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "mod_006",
+    "front": "What is __name__?",
+    "back": "Special variable equal to '__main__' when script runs directly, module name when imported. Used for conditional execution.",
+    "tags": ["modules"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "mod_007",
+    "front": "What is __all__?",
+    "back": "List defining public API of module. from module import * only imports names in __all__",
+    "tags": ["modules"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "mod_008",
+    "front": "What is sys.path?",
+    "back": "List of directories where Python searches for modules. Can modify to add custom paths.",
+    "tags": ["modules"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "mod_009",
+    "front": "How do you create a module?",
+    "back": "Write Python code in a .py file. Can contain functions, classes, variables. Import in other files.",
+    "tags": ["modules"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "mod_010",
+    "front": "How do you reload a module?",
+    "back": "Use importlib.reload(module). Useful during development when module code changes.",
+    "tags": ["modules"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "mod_011",
+    "front": "What is dir() for modules?",
+    "back": "dir(module) lists all names defined in module. Useful for exploration and debugging.",
+    "tags": ["modules"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "mod_012",
+    "front": "What is __doc__?",
+    "back": "Docstring of module, function, or class. Accessible as obj.__doc__. Can be retrieved with help()",
+    "tags": ["modules", "documentation"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "mod_013",
+    "front": "What is relative import?",
+    "back": "Import from same package using dots: from . import module or from ..sibling import name",
+    "tags": ["packages"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "mod_014",
+    "front": "What is setup.py?",
+    "back": "File for packaging Python projects. Defines metadata, dependencies, entry points. Used for distribution.",
+    "tags": ["packages"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "mod_015",
+    "front": "What is pip and how do you use it?",
+    "back": "Package installer for Python. pip install package_name. Also: pip list, pip uninstall, pip freeze",
+    "tags": ["packages"],
+    "difficulty": "easy"
+  }
+]

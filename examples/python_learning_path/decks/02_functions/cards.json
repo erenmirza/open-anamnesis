@@ -33,5 +33,75 @@
     "back": "Allows a function to accept any number of keyword arguments as a dictionary.",
     "tags": ["functions", "advanced"],
     "difficulty": "hard"
+  },
+  {
+    "id": "func_006",
+    "front": "What is a return statement?",
+    "back": "Sends a value back to the caller. A function can return multiple values as a tuple: return a, b, c",
+    "tags": ["functions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "func_007",
+    "front": "What is a lambda function?",
+    "back": "An anonymous function defined with 'lambda'. Example: lambda x: x * 2. Often used with map(), filter(), sorted()",
+    "tags": ["functions", "lambda"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "func_008",
+    "front": "What is variable scope?",
+    "back": "The region where a variable is accessible. Local scope (inside function), global scope (outside all functions).",
+    "tags": ["functions", "scope"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "func_009",
+    "front": "What is the 'global' keyword used for?",
+    "back": "Declares that a variable refers to a global variable. Allows modifying global variables inside functions.",
+    "tags": ["scope"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "func_010",
+    "front": "What is a docstring?",
+    "back": "Documentation string for a function. Written in triple quotes right after the def line. Retrieved with help() or __doc__",
+    "tags": ["functions", "documentation"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "func_011",
+    "front": "What is a decorator?",
+    "back": "A function that modifies another function. Applied with @ symbol. Example: @property, @staticmethod",
+    "tags": ["functions", "advanced"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "func_012",
+    "front": "What is recursion?",
+    "back": "When a function calls itself to solve a problem by breaking it into smaller subproblems. Requires a base case.",
+    "tags": ["functions"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "func_013",
+    "front": "How do you provide type hints in functions?",
+    "back": "Use arrows and colons: def add(a: int, b: int) -> int: return a + b. Improves code clarity and IDE support.",
+    "tags": ["functions", "type-hints"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "func_014",
+    "front": "What is a generator function?",
+    "back": "A function that yields values one at a time using 'yield'. Can be iterated over and is memory efficient.",
+    "tags": ["functions", "generators"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "func_015",
+    "front": "What is the difference between print() and return?",
+    "back": "print() displays output to console but returns None. return sends a value back to the caller and exits the function.",
+    "tags": ["functions"],
+    "difficulty": "easy"
   }
 ]

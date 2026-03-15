@@ -1,0 +1,107 @@
+[
+  {
+    "id": "test_001",
+    "front": "What is unit testing?",
+    "back": "Testing individual functions or methods in isolation. Tests should be small, fast, and independent.",
+    "tags": ["testing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "test_002",
+    "front": "What is pytest?",
+    "back": "Python testing framework. Write test functions starting with test_. Run with 'pytest' command.",
+    "tags": ["testing"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "test_003",
+    "front": "What is unittest?",
+    "back": "Built-in testing framework. Create TestCase classes with setUp() and test methods. Run with unittest.main()",
+    "tags": ["testing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "test_004",
+    "front": "What is an assertion?",
+    "back": "Statement that checks if condition is true. assert condition, 'error message'. If false, raises AssertionError.",
+    "tags": ["testing"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "test_005",
+    "front": "What are common assertions?",
+    "back": "assertEqual(a,b), assertTrue(x), assertFalse(x), assertIn(a,b), assertRaises(exception)",
+    "tags": ["testing"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "test_006",
+    "front": "What is mocking?",
+    "back": "Replacing real objects with test objects. from unittest.mock import Mock. Useful for external dependencies.",
+    "tags": ["testing"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "test_007",
+    "front": "What is test coverage?",
+    "back": "Percentage of code executed during tests. Use coverage.py package. Aim for high coverage. pytest --cov",
+    "tags": ["testing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "test_008",
+    "front": "What is debugging?",
+    "back": "Process of finding and fixing errors. Techniques: print statements, logging, debugger, code inspection",
+    "tags": ["debugging"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "test_009",
+    "front": "What is pdb (Python Debugger)?",
+    "back": "Built-in debugger. Set breakpoint with import pdb; pdb.set_trace(). Step through code interactively.",
+    "tags": ["debugging"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "test_010",
+    "front": "What are pdb commands?",
+    "back": "l (list), n (next), s (step into), c (continue), b (breakpoint), w (where), p (print variable)",
+    "tags": ["debugging"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "test_011",
+    "front": "What is logging?",
+    "back": "Better than print for debugging. import logging. Levels: DEBUG, INFO, WARNING, ERROR, CRITICAL",
+    "tags": ["debugging"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "test_012",
+    "front": "How do you use logging?",
+    "back": "logging.basicConfig(). logging.debug(), logging.info(), logging.error(). Configurable levels and format.",
+    "tags": ["debugging"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "test_013",
+    "front": "What is profiling?",
+    "back": "Measuring program performance. cProfile module shows where time is spent. Helps optimize slow code.",
+    "tags": ["debugging"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "test_014",
+    "front": "What is linting?",
+    "back": "Static code analysis for style and error detection. Tools: pylint, flake8, black. Catches bugs early.",
+    "tags": ["quality"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "test_015",
+    "front": "What is TDD (Test-Driven Development)?",
+    "back": "Write tests before code. Red-Green-Refactor cycle: fail, pass, improve. Ensures testable code.",
+    "tags": ["testing"],
+    "difficulty": "hard"
+  }
+]

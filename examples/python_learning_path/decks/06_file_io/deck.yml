@@ -1,0 +1,3 @@
+name: "File I/O & Working with Files"
+description: "Reading, writing, and manipulating files"
+depends_on: ["01_basics"]

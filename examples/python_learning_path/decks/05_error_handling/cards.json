@@ -1,0 +1,107 @@
+[
+  {
+    "id": "err_001",
+    "front": "What is exception handling?",
+    "back": "Mechanism to handle errors gracefully. Uses try-except blocks to catch and handle exceptions without crashing.",
+    "tags": ["exceptions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "err_002",
+    "front": "What is the difference between syntax error and exception?",
+    "back": "Syntax error occurs during parsing, prevents code execution. Exception occurs at runtime during execution.",
+    "tags": ["exceptions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "err_003",
+    "front": "How does a try-except block work?",
+    "back": "try: block contains code that might raise exceptions. except: block contains code to handle the exception if it occurs.",
+    "tags": ["exceptions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "err_004",
+    "front": "What is the difference between except and except Exception?",
+    "back": "except: catches all exceptions including SystemExit, KeyboardInterrupt. except Exception: catches only Exception subclasses.",
+    "tags": ["exceptions"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "err_005",
+    "front": "What is the finally block?",
+    "back": "A block executed regardless of whether an exception occurred. Used for cleanup. Syntax: try: ... finally: cleanup_code",
+    "tags": ["exceptions"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "err_006",
+    "front": "What is the else block in try-except?",
+    "back": "Executes only if no exception occurred in try block. Syntax: try: ... except: ... else: no_error_code",
+    "tags": ["exceptions"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "err_007",
+    "front": "How do you raise an exception?",
+    "back": "Use raise keyword: raise ValueError('message'). Can raise built-in or custom exception types.",
+    "tags": ["exceptions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "err_008",
+    "front": "What is a custom exception?",
+    "back": "A user-defined exception class that inherits from Exception. Allows creating specific exception types for an application.",
+    "tags": ["exceptions", "classes"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "err_009",
+    "front": "What are built-in exception types?",
+    "back": "ValueError, TypeError, KeyError, IndexError, AttributeError, FileNotFoundError, ZeroDivisionError, etc.",
+    "tags": ["exceptions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "err_010",
+    "front": "How do you access exception information?",
+    "back": "Use 'as' keyword: except ValueError as e: print(e). Exception object contains error message and traceback.",
+    "tags": ["exceptions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "err_011",
+    "front": "What is the difference between raise and raise from?",
+    "back": "raise re-raises exception. raise ... from ... chains exceptions, showing both original and new exception.",
+    "tags": ["exceptions"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "err_012",
+    "front": "How do you catch multiple exception types?",
+    "back": "Use tuple: except (ValueError, TypeError): or separate except blocks for each type.",
+    "tags": ["exceptions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "err_013",
+    "front": "What is the context manager protocol?",
+    "back": "Defines __enter__ and __exit__ methods. Used with 'with' statement for resource management and cleanup.",
+    "tags": ["context-managers"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "err_014",
+    "front": "What is the with statement?",
+    "back": "Syntax: with expression as variable: block. Automatically calls __enter__ on entry and __exit__ on exit.",
+    "tags": ["context-managers"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "err_015",
+    "front": "What is traceback and how do you use it?",
+    "back": "Module that prints exception information. Use traceback.print_exc() to print full traceback for debugging.",
+    "tags": ["debugging"],
+    "difficulty": "medium"
+  }
+]

@@ -1,0 +1,3 @@
+name: "Testing & Debugging"
+description: "Testing code and debugging techniques"
+depends_on: ["02_functions", "05_error_handling"]

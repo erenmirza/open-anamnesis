@@ -1,0 +1,107 @@
+[
+  {
+    "id": "io_001",
+    "front": "How do you open and read a file?",
+    "back": "Use open() function: f = open('file.txt', 'r'). Read with f.read() (all), f.readline() (one), f.readlines() (list).",
+    "tags": ["file-operations"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "io_002",
+    "front": "What are file read modes?",
+    "back": "r: read (fail if not exists), w: write (create/overwrite), a: append, r+: read/write, b: binary",
+    "tags": ["file-operations"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "io_003",
+    "front": "How do you write to a file?",
+    "back": "Use open() with 'w' or 'a' mode. Then f.write('string') or f.writelines(list). Don't forget f.close()",
+    "tags": ["file-operations"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "io_004",
+    "front": "What is the with statement for files?",
+    "back": "Syntax: with open('file.txt') as f: code. Automatically closes file even if error occurs. Recommended approach.",
+    "tags": ["file-operations"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "io_005",
+    "front": "How do you iterate through file lines?",
+    "back": "Use for loop: for line in open('file.txt'): print(line). Or readlines() to get list. Lines include newline characters.",
+    "tags": ["file-operations"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "io_006",
+    "front": "What is the difference between seek() and tell()?",
+    "back": "seek(offset) moves file position to offset. tell() returns current position in file.",
+    "tags": ["file-operations"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "io_007",
+    "front": "How do you work with JSON files?",
+    "back": "Import json. json.load(f) reads JSON from file. json.dump(data, f) writes JSON to file.",
+    "tags": ["file-operations", "json"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "io_008",
+    "front": "How do you work with CSV files?",
+    "back": "Import csv module. csv.reader() reads CSV. csv.writer() writes CSV. Handles commas and quotes correctly.",
+    "tags": ["file-operations", "csv"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "io_009",
+    "front": "What is pathlib and how do you use it?",
+    "back": "Module for object-oriented file paths. Path('file.txt').read_text() reads file. Better than string paths.",
+    "tags": ["file-operations", "pathlib"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "io_010",
+    "front": "How do you check if a file exists?",
+    "back": "Using pathlib: Path('file.txt').exists(). Or os.path.exists('file.txt'). Or check try-except on open.",
+    "tags": ["file-operations"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "io_011",
+    "front": "How do you delete, rename, or copy files?",
+    "back": "Using pathlib: Path.unlink() deletes. os.rename() renames. shutil.copy() copies. More robust than manual operations.",
+    "tags": ["file-operations"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "io_012",
+    "front": "How do you work with directories?",
+    "back": "pathlib: Path.mkdir() creates, Path.iterdir() lists contents. os: os.listdir(), os.makedirs(), os.chdir()",
+    "tags": ["file-operations"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "io_013",
+    "front": "What is the os.walk() function?",
+    "back": "Recursively traverses directory tree. Yields tuples of (dirpath, dirnames, filenames). Useful for finding files.",
+    "tags": ["file-operations"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "io_014",
+    "front": "How do you handle large files?",
+    "back": "Read in chunks: while True: chunk = f.read(1024); if not chunk: break. Prevents loading entire file into memory.",
+    "tags": ["file-operations"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "io_015",
+    "front": "What is encoding and why is it important?",
+    "back": "Defines character representation. Common: UTF-8, ASCII. Specify in open(): open('file.txt', encoding='utf-8')",
+    "tags": ["file-operations"],
+    "difficulty": "medium"
+  }
+]

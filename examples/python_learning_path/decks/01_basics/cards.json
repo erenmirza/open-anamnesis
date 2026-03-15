@@ -33,5 +33,75 @@
     "back": "An unordered collection of key-value pairs. Created with curly braces: {'key': 'value'}",
     "tags": ["data-structures"],
     "difficulty": "easy"
+  },
+  {
+    "id": "basics_006",
+    "front": "What is a tuple?",
+    "back": "An ordered, immutable collection of items. Created with parentheses: (1, 2, 3). Cannot be modified after creation.",
+    "tags": ["data-structures"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "basics_007",
+    "front": "What is a set?",
+    "back": "An unordered collection of unique items. Created with curly braces: {1, 2, 3}. Automatically removes duplicates.",
+    "tags": ["data-structures"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "basics_008",
+    "front": "How do you convert data types?",
+    "back": "Use type conversion functions: int(), str(), float(), list(), dict(), tuple(), set(). Example: int('42') returns 42",
+    "tags": ["type-conversion", "syntax"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "basics_009",
+    "front": "What is string slicing?",
+    "back": "Extracting a portion of a string using indices. Example: s = 'hello'; s[1:4] returns 'ell'",
+    "tags": ["strings", "indexing"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "basics_010",
+    "front": "What operators are used for membership testing?",
+    "back": "The 'in' and 'not in' operators. Example: 'a' in 'apple' returns True",
+    "tags": ["operators"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "basics_011",
+    "front": "What is the difference between mutable and immutable?",
+    "back": "Mutable objects can be changed (list, dict, set). Immutable objects cannot (tuple, string, int).",
+    "tags": ["concepts"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "basics_012",
+    "front": "How do you check the type of a variable?",
+    "back": "Use the type() function. Example: type(42) returns <class 'int'>",
+    "tags": ["built-in-functions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "basics_013",
+    "front": "What is Boolean logic in Python?",
+    "back": "Using True and False values with logical operators: and, or, not. Used in conditionals and control flow.",
+    "tags": ["boolean"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "basics_014",
+    "front": "How do you get the length of a collection?",
+    "back": "Use the len() function. Example: len([1,2,3]) returns 3, len('hello') returns 5",
+    "tags": ["built-in-functions"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "basics_015",
+    "front": "What is a comment in Python?",
+    "back": "Text preceded by # that is ignored by the interpreter. Used to explain code. Multi-line comments can use triple quotes.",
+    "tags": ["syntax"],
+    "difficulty": "easy"
   }
 ]

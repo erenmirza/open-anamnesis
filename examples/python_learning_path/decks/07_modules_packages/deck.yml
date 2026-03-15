@@ -1,0 +1,3 @@
+name: "Modules & Packages"
+description: "Creating and using Python modules and packages"
+depends_on: ["02_functions"]

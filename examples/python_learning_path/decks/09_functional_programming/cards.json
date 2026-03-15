@@ -1,0 +1,107 @@
+[
+  {
+    "id": "fp_001",
+    "front": "What is functional programming?",
+    "back": "Programming paradigm using pure functions and immutable data. Avoids side effects. Functions are first-class objects.",
+    "tags": ["functional-programming"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "fp_002",
+    "front": "What is a pure function?",
+    "back": "Function that always returns same output for same input, has no side effects. Easier to test and reason about.",
+    "tags": ["functional-programming"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "fp_003",
+    "front": "What is a lambda function?",
+    "back": "Anonymous function: lambda args: expression. Often used with map(), filter(), sorted(). Limited to single expression.",
+    "tags": ["lambda"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "fp_004",
+    "front": "What is map()?",
+    "back": "Applies function to every item in iterable. map(function, iterable) returns iterator of results.",
+    "tags": ["functional-programming", "built-in"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "fp_005",
+    "front": "What is filter()?",
+    "back": "Creates iterator from elements satisfying condition. filter(function, iterable) returns items where function is True.",
+    "tags": ["functional-programming", "built-in"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "fp_006",
+    "front": "What is reduce()?",
+    "back": "Accumulates values. from functools import reduce. reduce(function, iterable) returns single accumulated value.",
+    "tags": ["functional-programming"],
+    "difficulty": "hard"
+  },
+  {
+    "id": "fp_007",
+    "front": "What is list comprehension?",
+    "back": "Concise way to create lists: [expr for item in iterable if condition]. More readable than map/filter.",
+    "tags": ["comprehensions"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "fp_008",
+    "front": "What is generator expression?",
+    "back": "Like list comprehension but with parentheses: (expr for item in iterable). Lazy evaluation, memory efficient.",
+    "tags": ["generators"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "fp_009",
+    "front": "What is zip()?",
+    "back": "Combines iterables into tuples. zip([1,2], ['a','b']) returns [(1,'a'), (2,'b')]",
+    "tags": ["built-in"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "fp_010",
+    "front": "What is enumerate()?",
+    "back": "Adds index to iterable. enumerate(['a','b']) returns [(0,'a'), (1,'b')]",
+    "tags": ["built-in"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "fp_011",
+    "front": "What is any() and all()?",
+    "back": "any(iterable) returns True if any element True. all(iterable) returns True if all elements True.",
+    "tags": ["built-in"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "fp_012",
+    "front": "What is sum()?",
+    "back": "Adds all items in iterable. sum([1,2,3]) returns 6. Can provide start value: sum(list, 10)",
+    "tags": ["built-in"],
+    "difficulty": "easy"
+  },
+  {
+    "id": "fp_013",
+    "front": "What is sorted()?",
+    "back": "Returns sorted list. sorted(iterable, key=function, reverse=True). key specifies sorting criteria.",
+    "tags": ["built-in"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "fp_014",
+    "front": "What is first-class function?",
+    "back": "Functions are objects. Can be assigned to variables, passed as arguments, returned from functions.",
+    "tags": ["functional-programming"],
+    "difficulty": "medium"
+  },
+  {
+    "id": "fp_015",
+    "front": "What is higher-order function?",
+    "back": "Function that takes function(s) as argument or returns function. Examples: map, filter, decorator",
+    "tags": ["functional-programming"],
+    "difficulty": "hard"
+  }
+]
