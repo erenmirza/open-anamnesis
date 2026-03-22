@@ -1,0 +1,5 @@
+{
+  "front": "What is sys.path?",
+  "back": "List of directories where Python searches for modules. Can modify to add custom paths.",
+  "display_name": "sys.path"
+}

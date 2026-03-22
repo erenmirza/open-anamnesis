@@ -1,4 +1,0 @@
-name: "Object-Oriented Programming"
-description: "Classes, objects, and OOP principles"
-depends_on:
-  - "02_functions"

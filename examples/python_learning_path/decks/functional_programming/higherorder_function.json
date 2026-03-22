@@ -1,0 +1,5 @@
+{
+  "front": "What is higher-order function?",
+  "back": "Function that takes function(s) as argument or returns function. Examples: map, filter, decorator",
+  "display_name": "Higher-Order Functions"
+}

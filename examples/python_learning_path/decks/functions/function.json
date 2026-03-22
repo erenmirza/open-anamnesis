@@ -1,0 +1,5 @@
+{
+  "front": "What is a function?",
+  "back": "A reusable block of code that performs a specific task. Defined with the def keyword.",
+  "display_name": "Functions"
+}

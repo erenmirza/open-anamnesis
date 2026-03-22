@@ -1,0 +1,5 @@
+{
+  "front": "What is a generator function?",
+  "back": "A function that yields values one at a time using 'yield'. Can be iterated over and is memory efficient.",
+  "display_name": "Generator Functions"
+}

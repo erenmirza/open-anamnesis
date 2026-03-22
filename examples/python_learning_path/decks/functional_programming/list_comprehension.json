@@ -1,0 +1,5 @@
+{
+  "front": "What is list comprehension?",
+  "back": "Concise way to create lists: [expr for item in iterable if condition]. More readable than map/filter.",
+  "display_name": "List Comprehensions"
+}

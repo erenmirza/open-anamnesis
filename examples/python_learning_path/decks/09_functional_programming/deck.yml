@@ -1,3 +1,0 @@
-name: "Functional Programming"
-description: "Functional programming concepts in Python"
-depends_on: ["02_functions"]

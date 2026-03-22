@@ -1,0 +1,5 @@
+{
+  "front": "What is the requests library?",
+  "back": "For making HTTP requests. requests.get(url), requests.post(url), returns Response object with status, text, json",
+  "display_name": "requests Library"
+}

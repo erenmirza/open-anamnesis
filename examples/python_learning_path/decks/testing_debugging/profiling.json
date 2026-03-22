@@ -1,0 +1,5 @@
+{
+  "front": "What is profiling?",
+  "back": "Measuring program performance. cProfile module shows where time is spent. Helps optimize slow code.",
+  "display_name": "Code Profiling"
+}

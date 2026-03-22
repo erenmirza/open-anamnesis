@@ -1,0 +1,5 @@
+{
+  "front": "What is a pure function?",
+  "back": "Function that always returns same output for same input, has no side effects. Easier to test and reason about.",
+  "display_name": "Pure Functions"
+}

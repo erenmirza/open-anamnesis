@@ -1,0 +1,5 @@
+{
+  "front": "What is string interning in Python?",
+  "back": "Process where Python caches strings to save memory. Same string literals may be same object. Use == not is for comparison.",
+  "display_name": "String Interning"
+}

@@ -1,3 +1,0 @@
-name: "Error Handling & Exceptions"
-description: "Exception handling and error management"
-depends_on: ["01_basics"]

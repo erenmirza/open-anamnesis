@@ -1,0 +1,5 @@
+{
+  "front": "What is self in Python?",
+  "back": "A reference to the instance of the class. Used inside methods to access instance variables.",
+  "display_name": "self Parameter"
+}

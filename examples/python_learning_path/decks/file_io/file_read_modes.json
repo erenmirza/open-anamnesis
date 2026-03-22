@@ -1,0 +1,5 @@
+{
+  "front": "What are file read modes?",
+  "back": "r: read (fail if not exists), w: write (create/overwrite), a: append, r+: read/write, b: binary",
+  "display_name": "File Modes"
+}

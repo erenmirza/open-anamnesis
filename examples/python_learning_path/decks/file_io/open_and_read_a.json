@@ -1,0 +1,5 @@
+{
+  "front": "How do you open and read a file?",
+  "back": "Use open() function: f = open('file.txt', 'r'). Read with f.read() (all), f.readline() (one), f.readlines() (list).",
+  "display_name": "Opening Files"
+}

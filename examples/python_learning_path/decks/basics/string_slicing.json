@@ -1,0 +1,5 @@
+{
+  "front": "What is string slicing?",
+  "back": "Extracting a portion of a string using indices. Example: s = 'hello'; s[1:4] returns 'ell'",
+  "display_name": "String Slicing"
+}

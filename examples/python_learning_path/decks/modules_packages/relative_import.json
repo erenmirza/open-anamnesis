@@ -1,0 +1,5 @@
+{
+  "front": "What is relative import?",
+  "back": "Import from same package using dots: from . import module or from ..sibling import name",
+  "display_name": "Relative Imports"
+}

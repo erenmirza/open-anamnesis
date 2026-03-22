@@ -1,0 +1,5 @@
+{
+  "front": "What is a static method?",
+  "back": "A method that doesn't use self or cls. Defined with @staticmethod. Can be called on class without creating instance.",
+  "display_name": "Static Methods"
+}

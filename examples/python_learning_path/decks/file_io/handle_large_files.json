@@ -1,0 +1,5 @@
+{
+  "front": "How do you handle large files?",
+  "back": "Read in chunks: while True: chunk = f.read(1024); if not chunk: break. Prevents loading entire file into memory.",
+  "display_name": "Large Files"
+}

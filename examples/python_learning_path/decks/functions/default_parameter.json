@@ -1,0 +1,5 @@
+{
+  "front": "What is a default parameter?",
+  "back": "A parameter with a default value used if no argument is provided. Example: def greet(name='World'):",
+  "display_name": "Default Parameters"
+}

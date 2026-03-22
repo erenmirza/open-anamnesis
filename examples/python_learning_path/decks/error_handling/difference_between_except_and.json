@@ -1,0 +1,5 @@
+{
+  "front": "What is the difference between except and except Exception?",
+  "back": "except: catches all exceptions including SystemExit, KeyboardInterrupt. except Exception: catches only Exception subclasses.",
+  "display_name": "except vs except Exception"
+}

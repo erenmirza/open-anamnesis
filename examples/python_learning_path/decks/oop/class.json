@@ -1,0 +1,5 @@
+{
+  "front": "What is a class?",
+  "back": "A blueprint for creating objects. It defines methods and attributes that objects will have.",
+  "display_name": "Classes"
+}

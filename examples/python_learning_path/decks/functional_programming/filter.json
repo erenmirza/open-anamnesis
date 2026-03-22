@@ -1,0 +1,5 @@
+{
+  "front": "What is filter()?",
+  "back": "Creates iterator from elements satisfying condition. filter(function, iterable) returns items where function is True.",
+  "display_name": "filter()"
+}

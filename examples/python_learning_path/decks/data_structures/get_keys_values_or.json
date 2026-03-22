@@ -1,0 +1,5 @@
+{
+  "front": "How do you get keys, values, or items from a dictionary?",
+  "back": "dict.keys() returns all keys, dict.values() returns all values, dict.items() returns key-value pairs.",
+  "display_name": "Dict Keys & Values"
+}

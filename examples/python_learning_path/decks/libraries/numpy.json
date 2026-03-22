@@ -1,0 +1,5 @@
+{
+  "front": "What is NumPy?",
+  "back": "Library for numerical computing with arrays and matrices. Provides fast computation on large arrays.",
+  "display_name": "NumPy"
+}

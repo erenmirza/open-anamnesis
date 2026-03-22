@@ -1,3 +1,0 @@
-name: "Data Structures"
-description: "Advanced data structures and their operations"
-depends_on: ["01_basics"]

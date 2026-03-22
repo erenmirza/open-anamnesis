@@ -1,0 +1,5 @@
+{
+  "front": "What is exception handling?",
+  "back": "Mechanism to handle errors gracefully. Uses try-except blocks to catch and handle exceptions without crashing.",
+  "display_name": "Exception Handling"
+}

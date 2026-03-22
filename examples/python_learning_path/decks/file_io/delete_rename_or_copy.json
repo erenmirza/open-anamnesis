@@ -1,0 +1,5 @@
+{
+  "front": "How do you delete, rename, or copy files?",
+  "back": "Using pathlib: Path.unlink() deletes. os.rename() renames. shutil.copy() copies. More robust than manual operations.",
+  "display_name": "File Operations"
+}

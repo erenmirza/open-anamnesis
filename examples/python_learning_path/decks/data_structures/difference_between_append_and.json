@@ -1,0 +1,5 @@
+{
+  "front": "What is the difference between append() and extend() for lists?",
+  "back": "append() adds a single element. extend() adds all elements from an iterable. Example: [1].append(2) gives [1,2], [1].extend([2,3]) gives [1,2,3]",
+  "display_name": "append() vs extend()"
+}

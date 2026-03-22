@@ -1,0 +1,5 @@
+{
+  "front": "What is a defaultdict?",
+  "back": "A dictionary subclass that provides default values for missing keys. From collections module. Useful for avoiding KeyError.",
+  "display_name": "DefaultDict"
+}

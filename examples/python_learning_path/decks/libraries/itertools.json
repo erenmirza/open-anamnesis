@@ -1,0 +1,5 @@
+{
+  "front": "What is itertools?",
+  "back": "Provides efficient iteration tools: combinations, permutations, product, cycle, count, chain",
+  "display_name": "itertools"
+}

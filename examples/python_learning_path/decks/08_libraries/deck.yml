@@ -1,3 +1,0 @@
-name: "Libraries & Popular Packages"
-description: "Working with popular Python libraries"
-depends_on: ["07_modules_packages"]

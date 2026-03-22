@@ -1,0 +1,5 @@
+{
+  "front": "What is the random module?",
+  "back": "For generating random numbers and choosing random elements. random(), randint(), choice(), shuffle()",
+  "display_name": "random Module"
+}

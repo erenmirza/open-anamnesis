@@ -1,0 +1,5 @@
+{
+  "front": "How do you catch multiple exception types?",
+  "back": "Use tuple: except (ValueError, TypeError): or separate except blocks for each type.",
+  "display_name": "Multiple Exceptions"
+}

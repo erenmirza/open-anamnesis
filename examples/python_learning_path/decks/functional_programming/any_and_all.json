@@ -1,0 +1,5 @@
+{
+  "front": "What is any() and all()?",
+  "back": "any(iterable) returns True if any element True. all(iterable) returns True if all elements True.",
+  "display_name": "any() and all()"
+}

@@ -1,0 +1,5 @@
+{
+  "front": "What is the super() function?",
+  "back": "Calls parent class methods from a child class. Used in inheritance to access parent functionality.",
+  "display_name": "super() Function"
+}

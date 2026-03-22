@@ -1,0 +1,5 @@
+{
+  "front": "What is mocking?",
+  "back": "Replacing real objects with test objects. from unittest.mock import Mock. Useful for external dependencies.",
+  "display_name": "Mocking"
+}

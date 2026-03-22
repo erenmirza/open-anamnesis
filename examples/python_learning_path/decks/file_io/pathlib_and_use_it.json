@@ -1,0 +1,5 @@
+{
+  "front": "What is pathlib and how do you use it?",
+  "back": "Module for object-oriented file paths. Path('file.txt').read_text() reads file. Better than string paths.",
+  "display_name": "pathlib Module"
+}

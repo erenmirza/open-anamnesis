@@ -1,0 +1,5 @@
+{
+  "front": "What is a class method?",
+  "back": "A method that uses cls instead of self. Defined with @classmethod. Works with the class itself, not the instance.",
+  "display_name": "Class Methods"
+}

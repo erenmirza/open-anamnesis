@@ -1,0 +1,5 @@
+{
+  "front": "What is the context manager protocol?",
+  "back": "Defines __enter__ and __exit__ methods. Used with 'with' statement for resource management and cleanup.",
+  "display_name": "Context Manager Protocol"
+}

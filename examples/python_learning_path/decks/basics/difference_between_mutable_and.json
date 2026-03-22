@@ -1,0 +1,5 @@
+{
+  "front": "What is the difference between mutable and immutable?",
+  "back": "Mutable objects can be changed (list, dict, set). Immutable objects cannot (tuple, string, int).",
+  "display_name": "Mutable vs Immutable"
+}

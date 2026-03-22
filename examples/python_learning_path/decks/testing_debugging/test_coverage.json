@@ -1,0 +1,5 @@
+{
+  "front": "What is test coverage?",
+  "back": "Percentage of code executed during tests. Use coverage.py package. Aim for high coverage. pytest --cov",
+  "display_name": "Test Coverage"
+}

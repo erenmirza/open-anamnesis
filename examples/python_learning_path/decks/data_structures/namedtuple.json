@@ -1,0 +1,5 @@
+{
+  "front": "What is a namedtuple?",
+  "back": "A tuple subclass with named fields. More readable than regular tuples. From collections module.",
+  "display_name": "Named Tuples"
+}

@@ -1,0 +1,5 @@
+{
+  "front": "What is __all__?",
+  "back": "List defining public API of module. from module import * only imports names in __all__",
+  "display_name": "__all__"
+}

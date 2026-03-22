@@ -1,0 +1,5 @@
+{
+  "front": "How do you check if a file exists?",
+  "back": "Using pathlib: Path('file.txt').exists(). Or os.path.exists('file.txt'). Or check try-except on open.",
+  "display_name": "File Existence"
+}

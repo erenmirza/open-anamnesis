@@ -1,0 +1,5 @@
+{
+  "front": "What is an assertion?",
+  "back": "Statement that checks if condition is true. assert condition, 'error message'. If false, raises AssertionError.",
+  "display_name": "Assertions"
+}

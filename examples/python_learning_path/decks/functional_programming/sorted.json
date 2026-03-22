@@ -1,0 +1,5 @@
+{
+  "front": "What is sorted()?",
+  "back": "Returns sorted list. sorted(iterable, key=function, reverse=True). key specifies sorting criteria.",
+  "display_name": "sorted()"
+}

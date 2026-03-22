@@ -1,0 +1,5 @@
+{
+  "front": "How do you check the type of a variable?",
+  "back": "Use the type() function. Example: type(42) returns <class 'int'>",
+  "display_name": "Checking Types"
+}

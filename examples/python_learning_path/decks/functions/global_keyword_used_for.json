@@ -1,0 +1,5 @@
+{
+  "front": "What is the 'global' keyword used for?",
+  "back": "Declares that a variable refers to a global variable. Allows modifying global variables inside functions.",
+  "display_name": "global Keyword"
+}

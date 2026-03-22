@@ -1,0 +1,4 @@
+depends_on:
+- basics
+description: Exception handling and error management
+name: Error Handling & Exceptions

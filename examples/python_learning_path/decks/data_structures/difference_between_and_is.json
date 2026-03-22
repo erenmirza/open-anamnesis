@@ -1,0 +1,5 @@
+{
+  "front": "What is the difference between == and is for lists and dicts?",
+  "back": "== compares contents, is compares identity. Two lists with same elements are equal but not identical.",
+  "display_name": "== vs is for Collections"
+}

@@ -1,0 +1,5 @@
+{
+  "front": "What is the difference between import and from import?",
+  "back": "import math: use math.sqrt(). from math import sqrt: use sqrt() directly. from avoids polluting namespace.",
+  "display_name": "import vs from...import"
+}

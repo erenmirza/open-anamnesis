@@ -1,0 +1,5 @@
+{
+  "front": "What is dir() for modules?",
+  "back": "dir(module) lists all names defined in module. Useful for exploration and debugging.",
+  "display_name": "dir() Function"
+}

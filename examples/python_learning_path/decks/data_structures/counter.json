@@ -1,0 +1,5 @@
+{
+  "front": "What is a Counter?",
+  "back": "A dictionary subclass for counting hashable objects. Returns dict-like object with elements as keys and counts as values.",
+  "display_name": "Counter"
+}

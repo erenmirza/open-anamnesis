@@ -1,0 +1,5 @@
+{
+  "front": "What is a dictionary?",
+  "back": "An unordered collection of key-value pairs. Created with curly braces: {'key': 'value'}",
+  "display_name": "Dictionary Basics"
+}

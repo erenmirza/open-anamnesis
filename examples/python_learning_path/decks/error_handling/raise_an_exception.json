@@ -1,0 +1,5 @@
+{
+  "front": "How do you raise an exception?",
+  "back": "Use raise keyword: raise ValueError('message'). Can raise built-in or custom exception types.",
+  "display_name": "Raising Exceptions"
+}

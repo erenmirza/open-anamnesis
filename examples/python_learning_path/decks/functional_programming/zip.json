@@ -1,0 +1,5 @@
+{
+  "front": "What is zip()?",
+  "back": "Combines iterables into tuples. zip([1,2], ['a','b']) returns [(1,'a'), (2,'b')]",
+  "display_name": "zip()"
+}

@@ -1,0 +1,5 @@
+{
+  "front": "What is __init__.py?",
+  "back": "Makes a directory a package. Can be empty or contain initialization code. Executed when package is imported.",
+  "display_name": "__init__.py"
+}

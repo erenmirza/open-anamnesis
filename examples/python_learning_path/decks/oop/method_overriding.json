@@ -1,0 +1,5 @@
+{
+  "front": "What is method overriding?",
+  "back": "Creating a method in a child class with the same name as the parent class. The child version replaces the parent version.",
+  "display_name": "Method Overriding"
+}

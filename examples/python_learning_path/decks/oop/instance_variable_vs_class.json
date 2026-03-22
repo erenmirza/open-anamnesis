@@ -1,0 +1,5 @@
+{
+  "front": "What is an instance variable vs class variable?",
+  "back": "Instance variables belong to individual objects (defined in __init__). Class variables are shared by all instances.",
+  "display_name": "Instance vs Class Variables"
+}

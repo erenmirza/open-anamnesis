@@ -1,0 +1,5 @@
+{
+  "front": "How do you import a module?",
+  "back": "import module_name or from module import name. Use 'as' alias: import numpy as np",
+  "display_name": "Importing Modules"
+}

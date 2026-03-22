@@ -1,0 +1,5 @@
+{
+  "front": "What is the with statement?",
+  "back": "Syntax: with expression as variable: block. Automatically calls __enter__ on entry and __exit__ on exit.",
+  "display_name": "with Statement"
+}

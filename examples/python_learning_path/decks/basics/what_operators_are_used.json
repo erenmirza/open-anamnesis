@@ -1,0 +1,5 @@
+{
+  "front": "What operators are used for membership testing?",
+  "back": "The 'in' and 'not in' operators. Example: 'a' in 'apple' returns True",
+  "display_name": "Comparison Operators"
+}

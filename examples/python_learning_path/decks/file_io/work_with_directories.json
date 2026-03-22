@@ -1,0 +1,5 @@
+{
+  "front": "How do you work with directories?",
+  "back": "pathlib: Path.mkdir() creates, Path.iterdir() lists contents. os: os.listdir(), os.makedirs(), os.chdir()",
+  "display_name": "Directory Operations"
+}

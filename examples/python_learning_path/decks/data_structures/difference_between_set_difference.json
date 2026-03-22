@@ -1,0 +1,5 @@
+{
+  "front": "What is the difference between set difference, intersection, and union?",
+  "back": "Difference (a - b): elements in a not in b. Intersection (a & b): elements in both. Union (a | b): all elements.",
+  "display_name": "Set Difference Methods"
+}

@@ -1,0 +1,5 @@
+{
+  "front": "What are dictionary comprehensions?",
+  "back": "A concise way to create dictionaries. Example: {x: x**2 for x in range(3)} creates {0: 0, 1: 1, 2: 4}",
+  "display_name": "Dict Comprehensions"
+}

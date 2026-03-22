@@ -1,0 +1,5 @@
+{
+  "front": "What is map()?",
+  "back": "Applies function to every item in iterable. map(function, iterable) returns iterator of results.",
+  "display_name": "map()"
+}

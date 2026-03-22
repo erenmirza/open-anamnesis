@@ -1,0 +1,5 @@
+{
+  "front": "How do you create a Pandas DataFrame?",
+  "back": "pd.DataFrame(dict), pd.read_csv('file.csv'), pd.read_json('file.json')",
+  "display_name": "Pandas DataFrames"
+}

@@ -1,0 +1,5 @@
+{
+  "front": "What is sum()?",
+  "back": "Adds all items in iterable. sum([1,2,3]) returns 6. Can provide start value: sum(list, 10)",
+  "display_name": "sum()"
+}

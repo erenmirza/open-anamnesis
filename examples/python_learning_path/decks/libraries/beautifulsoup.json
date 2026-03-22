@@ -1,0 +1,5 @@
+{
+  "front": "What is BeautifulSoup?",
+  "back": "For web scraping and parsing HTML/XML. Provides methods to find elements and navigate structure.",
+  "display_name": "BeautifulSoup"
+}

@@ -1,0 +1,5 @@
+{
+  "front": "How do you access exception information?",
+  "back": "Use 'as' keyword: except ValueError as e: print(e). Exception object contains error message and traceback.",
+  "display_name": "Exception Information"
+}

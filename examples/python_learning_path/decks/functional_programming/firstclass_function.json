@@ -1,0 +1,5 @@
+{
+  "front": "What is first-class function?",
+  "back": "Functions are objects. Can be assigned to variables, passed as arguments, returned from functions.",
+  "display_name": "First-Class Functions"
+}

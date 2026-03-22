@@ -1,0 +1,5 @@
+{
+  "front": "What is encapsulation?",
+  "back": "Bundling data and methods together and hiding internal details. Use _ or __ prefix for private attributes.",
+  "display_name": "Encapsulation"
+}

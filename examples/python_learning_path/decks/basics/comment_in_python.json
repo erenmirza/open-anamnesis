@@ -1,0 +1,5 @@
+{
+  "front": "What is a comment in Python?",
+  "back": "Text preceded by # that is ignored by the interpreter. Used to explain code. Multi-line comments can use triple quotes.",
+  "display_name": "Comments"
+}

@@ -1,0 +1,5 @@
+{
+  "front": "What is the math module?",
+  "back": "Mathematical functions: sqrt(), sin(), cos(), tan(), log(), exp(), factorial(), ceil(), floor()",
+  "display_name": "math Module"
+}

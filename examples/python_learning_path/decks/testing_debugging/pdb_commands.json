@@ -1,0 +1,5 @@
+{
+  "front": "What are pdb commands?",
+  "back": "l (list), n (next), s (step into), c (continue), b (breakpoint), w (where), p (print variable)",
+  "display_name": "pdb Commands"
+}

@@ -1,0 +1,5 @@
+{
+  "front": "What is the difference between parameters and arguments?",
+  "back": "Parameters are variables in the function definition. Arguments are the actual values passed to the function.",
+  "display_name": "Parameters vs Arguments"
+}

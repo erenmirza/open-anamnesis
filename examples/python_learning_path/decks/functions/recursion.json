@@ -1,0 +1,5 @@
+{
+  "front": "What is recursion?",
+  "back": "When a function calls itself to solve a problem by breaking it into smaller subproblems. Requires a base case.",
+  "display_name": "Recursion"
+}

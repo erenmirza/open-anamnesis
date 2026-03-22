@@ -1,0 +1,5 @@
+{
+  "front": "What is a lambda function?",
+  "back": "Anonymous function: lambda args: expression. Often used with map(), filter(), sorted(). Limited to single expression.",
+  "display_name": "Lambda Functions"
+}

@@ -1,0 +1,5 @@
+{
+  "front": "What is the difference between seek() and tell()?",
+  "back": "seek(offset) moves file position to offset. tell() returns current position in file.",
+  "display_name": "seek() vs tell()"
+}
