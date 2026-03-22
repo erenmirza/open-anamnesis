@@ -279,8 +279,8 @@ python -m json.tool deck/cards.json
 1. Update version in `setup.py` and `pyproject.toml`
 2. Update CHANGELOG (if exists)
 3. Run full test suite
-4. Tag release: `git tag v0.1.1`
-5. Push tag: `git push origin v0.1.1`
+4. Tag release: `git tag v0.1.2`
+5. Push tag: `git push origin v0.1.2`
 6. Build and publish: `python -m build && twine upload dist/*`
 
 ## Dependencies

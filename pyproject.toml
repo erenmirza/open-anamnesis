@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "open-anamnesis"
-version = "0.1.1"
+version = "0.1.2"
 description = "A dbt-like platform for building and managing flashcard projects"
 readme = "README.md"
 license = {text = "MIT"}

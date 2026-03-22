@@ -12,7 +12,7 @@ from .builder import Builder
 
 
 @click.group()
-@click.version_option(version="0.1.1")
+@click.version_option(version="0.1.2")
 def main():
     """Anamnesis - A dbt-like platform for flashcard projects"""
     pass
