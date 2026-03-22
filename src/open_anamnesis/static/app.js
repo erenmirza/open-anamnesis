@@ -149,7 +149,14 @@ function selectDeck(deckId) {
 
 function showDeckView() {
     hideAllViews();
-    document.getElementById('deck-view').classList.remove('hidden');
+    const deckView = document.getElementById('deck-view');
+
+    // Force animation retrigger by removing and re-adding the element to the DOM flow
+    deckView.style.animation = 'none';
+    deckView.offsetHeight; // Trigger reflow
+    deckView.style.animation = '';
+
+    deckView.classList.remove('hidden');
 
     const deck = currentDeck;
     document.getElementById('deck-title').textContent = deck.metadata.name || deck.id;
