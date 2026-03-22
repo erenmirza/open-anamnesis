@@ -53,7 +53,14 @@ class Deck:
                 if card_yml.exists():
                     with open(card_yml, "r") as f:
                         metadata = yaml.safe_load(f) or {}
-                        card_data["depends_on"] = metadata.get("depends_on")
+                        depends_on = metadata.get("depends_on")
+
+                        # Validate depends_on type
+                        if depends_on is not None and not isinstance(depends_on, str):
+                            print(f"Warning: Card {card_id} has invalid depends_on type (expected string or null)")
+                            depends_on = None
+
+                        card_data["depends_on"] = depends_on
                 else:
                     card_data["depends_on"] = None
 
@@ -84,6 +91,11 @@ class Deck:
         # Check if _deck.yml exists
         if not self.config_file.exists():
             errors.append(f"Missing _deck.yml in {self.name}")
+            return False, errors
+
+        # Validate _deck.yml schema
+        deck_config_errors = self._validate_deck_config()
+        errors.extend(deck_config_errors)
 
         # Check if there are any card files
         card_files = list(self.deck_path.glob("*.json"))
@@ -100,12 +112,37 @@ class Deck:
         except Exception as e:
             errors.append(f"Error validating cards in {self.name}: {e}")
 
+        return len(errors) == 0, errors
+
+    def _validate_deck_config(self) -> List[str]:
+        """Validate _deck.yml schema"""
+        errors = []
+
+        # Validate required field: display_name
+        if "display_name" not in self.config:
+            errors.append(f"{self.name}: _deck.yml missing required field 'display_name'")
+        elif not isinstance(self.config["display_name"], str) or not self.config["display_name"].strip():
+            errors.append(f"{self.name}: _deck.yml 'display_name' must be a non-empty string")
+
+        # Validate optional but expected fields
+        if "description" in self.config and not isinstance(self.config["description"], str):
+            errors.append(f"{self.name}: _deck.yml 'description' must be a string")
+
         # Validate dependencies format
         depends_on = self.config.get("depends_on", [])
         if not isinstance(depends_on, list):
-            errors.append(f"Invalid depends_on format in {self.name}")
+            errors.append(f"{self.name}: _deck.yml 'depends_on' must be a list")
+        else:
+            # Validate each dependency is a string
+            for i, dep in enumerate(depends_on):
+                if not isinstance(dep, str):
+                    errors.append(f"{self.name}: _deck.yml 'depends_on[{i}]' must be a string")
 
-        return len(errors) == 0, errors
+        # Warn about deprecated fields
+        if "name" in self.config and "display_name" not in self.config:
+            errors.append(f"{self.name}: _deck.yml uses deprecated field 'name', should be 'display_name'")
+
+        return errors
     
     def _validate_card(self, card: Dict[str, Any], index: int) -> List[str]:
         """Validate individual card structure"""
@@ -124,5 +161,15 @@ class Deck:
                          if c.get("id") == card_id and i != index]
             if duplicates:
                 errors.append(f"Duplicate card ID: {card_id} in {self.name}")
+
+        # Validate depends_on field if present
+        depends_on = card.get("depends_on")
+        if depends_on is not None and not isinstance(depends_on, str):
+            errors.append(f"{self.name}, Card '{card_id}': depends_on must be a string or null")
+
+        # Validate card .yml file exists
+        card_yml = self.deck_path / f"{card_id}.yml"
+        if not card_yml.exists():
+            errors.append(f"{self.name}, Card '{card_id}': missing required {card_id}.yml file")
 
         return errors

@@ -26,7 +26,7 @@ class TestProject:
             project = Project.create_new(str(project_path))
 
             assert project_path.exists()
-            assert (project_path / "project.yml").exists()
+            assert (project_path / "_project.yml").exists()
             assert (project_path / "decks").exists()
             assert (project_path / "build").exists()
             assert (project_path / ".gitignore").exists()
@@ -178,7 +178,7 @@ class TestDeck:
 
             # Create _deck.yml
             deck_config = {
-                "name": "Test Deck",
+                "display_name": "Test Deck",
                 "description": "Test deck",
                 "depends_on": []
             }
@@ -223,7 +223,7 @@ class TestDeck:
             deck_path.mkdir(exist_ok=True)
 
             deck_config = {
-                "name": "Empty Deck",
+                "display_name": "Empty Deck",
                 "description": "No cards",
                 "depends_on": []
             }
@@ -243,7 +243,7 @@ class TestDeck:
             deck_path.mkdir(exist_ok=True)
 
             deck_config = {
-                "name": "Test Deck",
+                "display_name": "Test Deck",
                 "description": "A test deck",
                 "depends_on": ["other_deck"]
             }
@@ -282,14 +282,14 @@ class TestCompiler:
             assert len(results["errors"]) == 0
 
     def test_compile_missing_project_yml(self):
-        """Test compiling with missing project.yml"""
+        """Test compiling with missing _project.yml"""
         with tempfile.TemporaryDirectory() as tmpdir:
             # Create empty directory
             compiler = Compiler(str(tmpdir))
             results = compiler.compile()
 
             assert not results["success"]
-            assert any("project.yml" in err for err in results["errors"])
+            assert any("_project.yml" in err for err in results["errors"])
 
     def test_compile_invalid_deck_dependency(self):
         """Test compiling with invalid deck dependency"""
@@ -300,7 +300,7 @@ class TestCompiler:
             # Modify deck to depend on non-existent deck
             deck_path = project_path / "decks" / "getting_started"
             deck_config = {
-                "name": "Getting Started",
+                "display_name": "Getting Started",
                 "description": "Test",
                 "depends_on": ["non_existent_deck"]
             }
@@ -336,6 +336,83 @@ class TestCompiler:
 
             assert isinstance(order, list)
             assert "getting_started" in order
+
+    def test_compile_deck_exceeds_max_cards(self):
+        """Test compiling with deck exceeding maximum 9 cards"""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            project_path = Path(tmpdir)
+            project = Project.create_new(str(project_path))
+
+            # Create a deck with 10 cards (exceeds max of 9)
+            deck_path = project_path / "decks" / "large_deck"
+            deck_path.mkdir()
+
+            deck_config = {
+                "display_name": "Large Deck",
+                "description": "Deck with too many cards",
+                "depends_on": []
+            }
+            with open(deck_path / "_deck.yml", "w") as f:
+                yaml.dump(deck_config, f)
+
+            # Create 10 cards
+            for i in range(10):
+                card_data = {
+                    "display_name": f"Card {i+1}",
+                    "front": f"Question {i+1}?",
+                    "back": f"Answer {i+1}"
+                }
+                with open(deck_path / f"card_{i:03d}.json", "w") as f:
+                    json.dump(card_data, f)
+
+                card_metadata = {"depends_on": f"card_{i-1:03d}" if i > 0 else None}
+                with open(deck_path / f"card_{i:03d}.yml", "w") as f:
+                    yaml.dump(card_metadata, f)
+
+            compiler = Compiler(str(project_path))
+            results = compiler.compile()
+
+            assert not results["success"]
+            assert any("maximum allowed is 9" in err and "large_deck" in err for err in results["errors"])
+
+    def test_compile_deck_with_exactly_9_cards(self):
+        """Test compiling with deck having exactly 9 cards (should pass)"""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            project_path = Path(tmpdir)
+            project = Project.create_new(str(project_path))
+
+            # Create a deck with exactly 9 cards
+            deck_path = project_path / "decks" / "max_deck"
+            deck_path.mkdir()
+
+            deck_config = {
+                "display_name": "Max Deck",
+                "description": "Deck with maximum cards",
+                "depends_on": []
+            }
+            with open(deck_path / "_deck.yml", "w") as f:
+                yaml.dump(deck_config, f)
+
+            # Create 9 cards
+            for i in range(9):
+                card_data = {
+                    "display_name": f"Card {i+1}",
+                    "front": f"Question {i+1}?",
+                    "back": f"Answer {i+1}"
+                }
+                with open(deck_path / f"card_{i:03d}.json", "w") as f:
+                    json.dump(card_data, f)
+
+                card_metadata = {"depends_on": f"card_{i-1:03d}" if i > 0 else None}
+                with open(deck_path / f"card_{i:03d}.yml", "w") as f:
+                    yaml.dump(card_metadata, f)
+
+            compiler = Compiler(str(project_path))
+            results = compiler.compile()
+
+            # Should succeed - 9 cards is the maximum allowed
+            assert results["success"]
+            assert len(results["errors"]) == 0
 
 
 class TestBuilder:

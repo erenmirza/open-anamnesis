@@ -10,6 +10,9 @@ import yaml
 from .project import Project
 from .deck import Deck
 
+# Project constraints
+MAX_CARDS_PER_DECK = 9
+
 
 class Compiler:
     """Compiles and validates Anamnesis projects"""
@@ -39,18 +42,32 @@ class Compiler:
             for deck_name in deck_names:
                 deck_path = self.project.decks_dir / deck_name
                 deck = Deck(str(deck_path))
-                
+
                 # Validate deck structure
                 is_valid, deck_errors = deck.validate()
                 self.errors.extend([f"Deck '{deck_name}': {e}" for e in deck_errors])
-                
-                cards_count += len(deck.get_cards())
+
+                # Validate maximum cards per deck
+                card_count = len(deck.get_cards())
+                if card_count > MAX_CARDS_PER_DECK:
+                    self.errors.append(
+                        f"Deck '{deck_name}': contains {card_count} cards, "
+                        f"maximum allowed is {MAX_CARDS_PER_DECK}"
+                    )
+
+                cards_count += card_count
             
             # Validate deck dependencies
             self._validate_dependencies()
 
+            # Check for circular deck dependencies
+            self._check_circular_deck_dependencies()
+
             # Validate card dependencies
             self._validate_card_dependencies()
+
+            # Check for circular card dependencies
+            self._check_circular_card_dependencies()
 
         except Exception as e:
             self.errors.append(f"Compilation error: {e}")
@@ -78,8 +95,23 @@ class Compiler:
             # Check for required fields
             if config is None:
                 self.errors.append("_project.yml is empty")
+                return
             elif not isinstance(config, dict):
                 self.errors.append("_project.yml must contain a dictionary")
+                return
+
+            # Validate required fields
+            if "name" not in config:
+                self.errors.append("_project.yml: missing required field 'name'")
+            elif not isinstance(config["name"], str) or not config["name"].strip():
+                self.errors.append("_project.yml: 'name' must be a non-empty string")
+
+            # Validate optional but expected fields
+            if "description" in config and not isinstance(config["description"], str):
+                self.errors.append("_project.yml: 'description' must be a string")
+
+            if "version" in config and not isinstance(config["version"], str):
+                self.errors.append("_project.yml: 'version' must be a string")
 
         except yaml.YAMLError as e:
             self.errors.append(f"Invalid YAML in _project.yml: {e}")
@@ -151,6 +183,76 @@ class Compiler:
                 self.errors.append(
                     f"Deck '{deck_name}': No first card found. At least one card must have no dependency."
                 )
+
+    def _check_circular_deck_dependencies(self) -> None:
+        """Check for circular dependencies in decks"""
+        deck_names = self.project.list_decks()
+        graph = self.get_dependency_graph()
+
+        def has_cycle(node, visited, rec_stack):
+            visited.add(node)
+            rec_stack.add(node)
+
+            for neighbor in graph.get(node, []):
+                if neighbor not in visited:
+                    if has_cycle(neighbor, visited, rec_stack):
+                        return True
+                elif neighbor in rec_stack:
+                    return True
+
+            rec_stack.remove(node)
+            return False
+
+        for deck in deck_names:
+            visited = set()
+            rec_stack = set()
+            if has_cycle(deck, visited, rec_stack):
+                self.errors.append(f"Circular dependency detected involving deck '{deck}'")
+                break  # Report once
+
+    def _check_circular_card_dependencies(self) -> None:
+        """Check for circular dependencies in cards within each deck"""
+        deck_names = self.project.list_decks()
+
+        for deck_name in deck_names:
+            deck_path = self.project.decks_dir / deck_name
+            deck = Deck(str(deck_path))
+            cards = deck.get_cards()
+
+            # Build card dependency graph
+            graph = {}
+            for card in cards:
+                card_id = card["id"]
+                depends_on = card.get("depends_on")
+                if depends_on:
+                    graph[card_id] = [depends_on]
+                else:
+                    graph[card_id] = []
+
+            # Check for cycles
+            def has_cycle(node, visited, rec_stack):
+                visited.add(node)
+                rec_stack.add(node)
+
+                for neighbor in graph.get(node, []):
+                    if neighbor not in visited:
+                        if has_cycle(neighbor, visited, rec_stack):
+                            return True
+                    elif neighbor in rec_stack:
+                        return True
+
+                rec_stack.remove(node)
+                return False
+
+            for card in cards:
+                card_id = card["id"]
+                visited = set()
+                rec_stack = set()
+                if has_cycle(card_id, visited, rec_stack):
+                    self.errors.append(
+                        f"Deck '{deck_name}': Circular dependency detected involving card '{card_id}'"
+                    )
+                    break  # Report once per deck
     
     def get_dependency_graph(self) -> Dict[str, List[str]]:
         """Get dependency graph for all decks"""

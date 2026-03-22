@@ -31,7 +31,9 @@ anamnesis-build
 
 ## Example Project
 
-Check out `examples/cli_guide/` for a complete example that teaches you how to use Anamnesis through interactive flashcards!
+Check out `examples/anamnesis_cli/` for a complete example that teaches you how to use Anamnesis through interactive flashcards!
+
+**[🎯 View Live Demo](https://htmlpreview.github.io/?https://github.com/erenmirza/open-anamnesis/blob/main/examples/anamnesis_cli/build/index.html)** - Try the interactive web interface
 
 ## Project Structure
 
