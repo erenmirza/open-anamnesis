@@ -9,7 +9,7 @@ description = "A dbt-like platform for building and managing flashcard projects"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "Open Anamnesis Contributors"},
+    {name = "Eren Mirza", email="eren.mirza@gmail.com"},
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
