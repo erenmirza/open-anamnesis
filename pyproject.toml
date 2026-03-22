@@ -42,3 +42,9 @@ anamnesis-build = "open_anamnesis.cli:build_cmd"
 Homepage = "https://github.com/open-anamnesis/open-anamnesis"
 Repository = "https://github.com/open-anamnesis/open-anamnesis.git"
 Issues = "https://github.com/open-anamnesis/open-anamnesis/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

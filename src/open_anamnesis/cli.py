@@ -23,7 +23,7 @@ def init(project_name):
     """Initialize a new Anamnesis project."""
     try:
         project = Project.create_new(project_name)
-        click.secho(f"✓ Project '{project_name}' initialized successfully!", fg="green")
+        click.secho(f"SUCCESS: Project '{project_name}' initialized successfully!", fg="green")
         click.echo(f"  Location: {project.root_path}")
         click.echo("  Next steps:")
         click.echo(f"    1. cd {project_name}")
@@ -31,7 +31,7 @@ def init(project_name):
         click.echo("    3. Run 'anamnesis-compile' to validate your project")
         click.echo("    4. Run 'anamnesis-build' to generate the web interface")
     except Exception as e:
-        click.secho(f"✗ Error initializing project: {e}", fg="red")
+        click.secho(f"ERROR: Error initializing project: {e}", fg="red")
         raise click.Abort()
 
 
@@ -52,17 +52,17 @@ def compile_cmd(project_dir="."):
         results = compiler.compile()
         
         if results["success"]:
-            click.secho(f"✓ Compilation successful!", fg="green")
+            click.secho(f"SUCCESS: Compilation successful!", fg="green")
             click.echo(f"  - Validated {results['decks_count']} deck(s)")
             click.echo(f"  - Validated {results['cards_count']} card(s)")
             click.echo(f"  - No errors found")
         else:
-            click.secho(f"✗ Compilation failed with {len(results['errors'])} error(s)", fg="red")
+            click.secho(f"ERROR: Compilation failed with {len(results['errors'])} error(s)", fg="red")
             for error in results["errors"]:
                 click.echo(f"  • {error}")
             raise click.Abort()
     except Exception as e:
-        click.secho(f"✗ Error during compilation: {e}", fg="red")
+        click.secho(f"ERROR: Error during compilation: {e}", fg="red")
         raise click.Abort()
 
 
@@ -86,7 +86,7 @@ def build_cmd(project_dir=".", port=5000, host="127.0.0.1"):
         compile_results = compiler.compile()
         
         if not compile_results["success"]:
-            click.secho(f"✗ Compilation failed. Fix errors before building.", fg="red")
+            click.secho(f"ERROR: Compilation failed. Fix errors before building.", fg="red")
             for error in compile_results["errors"]:
                 click.echo(f"  • {error}")
             raise click.Abort()
@@ -101,7 +101,7 @@ def build_cmd(project_dir=".", port=5000, host="127.0.0.1"):
     except KeyboardInterrupt:
         pass  # Graceful exit
     except Exception as e:
-        click.secho(f"✗ Error during build: {e}", fg="red")
+        click.secho(f"ERROR: Error during build: {e}", fg="red")
         raise click.Abort()
 
 

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anamnesis - Flashcard Learning</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar">
+            <div class="navbar-content">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                    <span class="logo-text">Anamnesis</span>
+                </div>
+                <p id="project-title" class="project-subtitle"></p>
+            </div>
+        </nav>
+
+        <main class="container">
+            <div id="decks-view" class="view">
+                <div class="view-header">
+                    <h2 class="view-title">Your Decks</h2>
+                    <div class="stats" id="deck-stats"></div>
+                </div>
+                <div id="decks-list" class="decks-grid">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+
+            <div id="deck-view" class="view hidden">
+                <button class="back-btn" onclick="showDecksView()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back to Decks
+                </button>
+                <div class="deck-header">
+                    <h2 id="deck-title" class="deck-title"></h2>
+                    <p id="deck-description" class="deck-description"></p>
+                </div>
+                <div class="deck-actions">
+                    <button class="btn btn-primary" onclick="startLearning()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                        Start Learning
+                    </button>
+                    <button class="btn btn-secondary" onclick="startTest()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                        Take Test
+                    </button>
+                </div>
+                <div class="cards-preview">
+                    <h3 class="section-title">All Cards</h3>
+                    <div id="cards-list" class="cards-list">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="learn-view" class="view hidden">
+                <button class="back-btn" onclick="backToDeck()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back to Deck
+                </button>
+                <div class="learn-header">
+                    <h2 class="view-title">Learning Mode</h2>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="learn-progress"></div>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="card-counter">
+                        <span id="current-card">1</span> / <span id="total-cards">10</span>
+                    </div>
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="card-label">Question</div>
+                                <div class="card-content" id="card-front"></div>
+                                <div class="flip-hint">Click to reveal answer</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="card-label">Answer</div>
+                                <div class="card-content" id="card-back"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-navigation">
+                        <button class="btn btn-nav" onclick="prevCard()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                            Previous
+                        </button>
+                        <button class="btn btn-nav" onclick="nextCard()">
+                            Next
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="test-view" class="view hidden">
+                <button class="back-btn" onclick="backToDeck()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back to Deck
+                </button>
+                <div class="test-header">
+                    <h2 class="view-title">Test Mode</h2>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="test-progress"></div>
+                    </div>
+                </div>
+                <div class="test-container">
+                    <div class="question-counter">
+                        Question <span id="test-current">1</span> of <span id="test-total">10</span>
+                    </div>
+                    <div class="question-section">
+                        <h3 id="question-text" class="question-text"></h3>
+                        <div id="answer-options" class="answer-options">
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+                    <div class="test-navigation">
+                        <button class="btn btn-nav" onclick="prevQuestion()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                            Previous
+                        </button>
+                        <button class="btn btn-nav" onclick="nextQuestion()">
+                            Next
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="static/app.js"></script>
+</body>
+</html>
