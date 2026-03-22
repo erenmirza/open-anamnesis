@@ -7,7 +7,7 @@ This guide helps developers understand and contribute to the Anamnesis project.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/open-anamnesis.git
+git clone https://github.com/open-anamnesis/open-anamnesis.git
 cd open-anamnesis
 ```
 
@@ -22,7 +22,6 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install development dependencies
 pip install -e .
-pip install pytest black flake8 mypy
 ```
 
 ### 3. Verify Installation
@@ -76,9 +75,6 @@ open-anamnesis/
 3. **Test your changes**
    ```bash
    pytest tests/
-   black open_anamnesis/  # Format code
-   flake8 open_anamnesis/  # Check style
-   mypy open_anamnesis/    # Type checking
    ```
 
 4. **Commit and push**
@@ -91,14 +87,6 @@ open-anamnesis/
 5. **Create a pull request**
 
 ## Code Style
-
-### Formatting
-
-We use Black for code formatting:
-
-```bash
-black open_anamnesis/
-```
 
 ### Type Hints
 
