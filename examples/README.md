@@ -17,8 +17,8 @@ A complete interactive guide that teaches you how to use Anamnesis through flash
 
 ```bash
 cd cli_guide
-anamnesis-compile
-anamnesis-build
+anamnesis compile
+anamnesis build
 ```
 
 Then visit http://127.0.0.1:5000 to see the interactive learning interface!

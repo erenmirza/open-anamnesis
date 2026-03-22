@@ -29,8 +29,8 @@ def init(project_name):
         click.echo("  Next steps:")
         click.echo(f"    1. cd {project_name}")
         click.echo("    2. Create your decks in the 'decks/' directory")
-        click.echo("    3. Run 'anamnesis-compile' to validate your project")
-        click.echo("    4. Run 'anamnesis-build' to generate the web interface")
+        click.echo("    3. Run 'anamnesis compile' to validate your project")
+        click.echo("    4. Run 'anamnesis build' to generate the web interface")
     except Exception as e:
         click.secho(f"ERROR: Error initializing project: {e}", fg="red")
         raise click.Abort()

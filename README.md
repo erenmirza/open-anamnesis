@@ -27,10 +27,10 @@ anamnesis init my_project
 cd my_project
 
 # Validate
-anamnesis-compile
+anamnesis compile
 
 # Build and launch
-anamnesis-build
+anamnesis build
 # Visit http://127.0.0.1:5000
 ```
 
@@ -74,8 +74,8 @@ depends_on: other_card_id  # or null for first card
 
 ```bash
 anamnesis init [PROJECT_NAME]              # Initialize new project
-anamnesis-compile [-d PROJECT_DIR]         # Validate project
-anamnesis-build [-d DIR] [-p PORT]         # Build and serve (default: port 5000)
+anamnesis compile [-d PROJECT_DIR]         # Validate project
+anamnesis build [-d DIR] [-p PORT]         # Build and serve (default: port 5000)
 ```
 
 ## Validation
