@@ -1,4 +1,4 @@
-# Open Anamnesis
+# open-anamnesis
 
 Open-source flashcards as code. Build and manage flashcard projects with dependency management, validation, and a web-based learning interface.
 
@@ -6,6 +6,7 @@ Open-source flashcards as code. Build and manage flashcard projects with depende
 
 - [Example Anamnesis GitHub](https://github.com/erenmirza/open-anamnesis-example)
 - [Example Anamnesis Website Build](https://erenmirza.github.io/open-anamnesis-example/)
+- [PyPi](https://pypi.org/project/open-anamnesis/)
 
 
 ![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue) ![License](https://img.shields.io/badge/License-MIT-green)
