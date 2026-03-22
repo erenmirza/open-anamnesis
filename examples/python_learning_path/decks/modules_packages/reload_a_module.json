@@ -1,5 +1,0 @@
-{
-  "front": "How do you reload a module?",
-  "back": "Use importlib.reload(module). Useful during development when module code changes.",
-  "display_name": "Reloading Modules"
-}

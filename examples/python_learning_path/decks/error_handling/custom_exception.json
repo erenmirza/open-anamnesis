@@ -1,5 +1,0 @@
-{
-  "front": "What is a custom exception?",
-  "back": "A user-defined exception class that inherits from Exception. Allows creating specific exception types for an application.",
-  "display_name": "Custom Exceptions"
-}

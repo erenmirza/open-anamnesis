@@ -1,5 +1,0 @@
-{
-  "front": "What is a module in Python?",
-  "back": "A file containing Python code (functions, classes, variables). Names match filename without .py",
-  "display_name": "Modules"
-}

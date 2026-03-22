@@ -5,6 +5,7 @@ Project module - represents an Anamnesis flashcard project
 import json
 from pathlib import Path
 from typing import Dict, List, Any
+
 import yaml
 
 
@@ -13,12 +14,12 @@ class Project:
     
     def __init__(self, root_path: str):
         self.root_path = Path(root_path)
-        self.config_file = self.root_path / "project.yml"
+        self.config_file = self.root_path / "_project.yml"
         self.decks_dir = self.root_path / "decks"
         self.config = self._load_config()
-    
+
     def _load_config(self) -> Dict[str, Any]:
-        """Load project configuration from project.yml"""
+        """Load project configuration from _project.yml"""
         if self.config_file.exists():
             with open(self.config_file, "r") as f:
                 return yaml.safe_load(f) or {}
@@ -48,14 +49,14 @@ class Project:
         (project_path / "decks").mkdir(exist_ok=True)
         (project_path / "build").mkdir(exist_ok=True)
         
-        # Create project.yml
+        # Create _project.yml
         project_config = {
             "name": project_name,
             "description": "My Anamnesis flashcard project",
             "version": "0.1.0",
         }
-        
-        with open(project_path / "project.yml", "w", encoding="utf-8") as f:
+
+        with open(project_path / "_project.yml", "w", encoding="utf-8") as f:
             yaml.dump(project_config, f, default_flow_style=False)
         
         # Create .gitignore
@@ -79,7 +80,7 @@ venv/
 
         # Create _deck.yml
         deck_config = {
-            "name": "Getting Started",
+            "display_name": "Getting Started",
             "description": "Your first deck",
             "depends_on": [],
         }

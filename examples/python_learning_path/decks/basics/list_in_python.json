@@ -1,5 +1,0 @@
-{
-  "front": "What is a list in Python?",
-  "back": "An ordered collection of items that can be modified. Created with square brackets: [1, 2, 3]",
-  "display_name": "Lists"
-}

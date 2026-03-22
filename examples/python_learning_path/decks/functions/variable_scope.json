@@ -1,5 +1,0 @@
-{
-  "front": "What is variable scope?",
-  "back": "The region where a variable is accessible. Local scope (inside function), global scope (outside all functions).",
-  "display_name": "Variable Scope"
-}

@@ -1,5 +1,0 @@
-{
-  "front": "What is setup.py?",
-  "back": "File for packaging Python projects. Defines metadata, dependencies, entry points. Used for distribution.",
-  "display_name": "setup.py"
-}

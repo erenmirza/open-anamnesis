@@ -1,5 +1,0 @@
-{
-  "front": "What is the else block in try-except?",
-  "back": "Executes only if no exception occurred in try block. Syntax: try: ... except: ... else: no_error_code",
-  "display_name": "else in try/except"
-}

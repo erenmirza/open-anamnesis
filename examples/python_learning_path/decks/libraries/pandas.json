@@ -1,5 +1,0 @@
-{
-  "front": "What is Pandas?",
-  "back": "Library for data manipulation and analysis. Provides DataFrame for tabular data and Series for 1D data.",
-  "display_name": "Pandas"
-}

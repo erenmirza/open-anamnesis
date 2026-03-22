@@ -1,5 +1,0 @@
-{
-  "front": "What is a property in Python?",
-  "back": "Using @property decorator to make methods accessible like attributes. Enables getters/setters: obj.value instead of obj.get_value()",
-  "display_name": "@property Decorator"
-}

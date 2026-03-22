@@ -1,5 +1,0 @@
-{
-  "front": "What is encoding and why is it important?",
-  "back": "Defines character representation. Common: UTF-8, ASCII. Specify in open(): open('file.txt', encoding='utf-8')",
-  "display_name": "File Encoding"
-}

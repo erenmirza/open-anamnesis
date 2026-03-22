@@ -1,5 +1,0 @@
-{
-  "front": "How do you create a module?",
-  "back": "Write Python code in a .py file. Can contain functions, classes, variables. Import in other files.",
-  "display_name": "Creating Modules"
-}

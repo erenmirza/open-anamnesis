@@ -2,7 +2,7 @@
 Card module - represents a single flashcard
 """
 
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Tuple
 
 # Character limits for card fields
 MAX_DISPLAY_NAME_LENGTH = 60
@@ -45,7 +45,7 @@ class Card:
             "metadata": self.metadata,
         }
     
-    def validate(self) -> tuple[bool, List[str]]:
+    def validate(self) -> Tuple[bool, List[str]]:
         """Validate card has all required fields and character limits"""
         errors = []
 

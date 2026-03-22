@@ -1,5 +1,0 @@
-{
-  "front": "How do you iterate through file lines?",
-  "back": "Use for loop: for line in open('file.txt'): print(line). Or readlines() to get list. Lines include newline characters.",
-  "display_name": "Reading Lines"
-}

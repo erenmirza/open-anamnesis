@@ -1,5 +1,0 @@
-{
-  "front": "What is logging?",
-  "back": "Better than print for debugging. import logging. Levels: DEBUG, INFO, WARNING, ERROR, CRITICAL",
-  "display_name": "Logging"
-}

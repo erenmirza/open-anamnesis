@@ -1,5 +1,0 @@
-{
-  "front": "What is set comprehension?",
-  "back": "A concise way to create sets. Example: {x*2 for x in range(5)} creates {0, 2, 4, 6, 8}",
-  "display_name": "Set Comprehensions"
-}

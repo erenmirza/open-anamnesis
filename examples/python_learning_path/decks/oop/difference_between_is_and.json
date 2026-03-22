@@ -1,5 +1,0 @@
-{
-  "front": "What is the difference between is and == for objects?",
-  "back": "== compares value, is compares identity (same object in memory). For instances, == uses __eq__ method.",
-  "display_name": "isinstance() vs type()"
-}

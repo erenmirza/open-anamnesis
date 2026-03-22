@@ -1,5 +1,0 @@
-{
-  "front": "What is a lambda function?",
-  "back": "An anonymous function defined with 'lambda'. Example: lambda x: x * 2. Often used with map(), filter(), sorted()",
-  "display_name": "Lambda Functions"
-}

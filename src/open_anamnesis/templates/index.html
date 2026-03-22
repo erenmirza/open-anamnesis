@@ -20,12 +20,19 @@
                     </svg>
                     <span class="logo-text">Anamnesis</span>
                 </div>
-                <p id="project-title" class="project-subtitle"></p>
+                <p class="project-subtitle">Flashcard Learning Platform</p>
             </div>
         </nav>
 
         <main class="container">
             <div id="decks-view" class="view">
+                <div class="project-info">
+                    <h1 class="project-name" id="project-name"></h1>
+                    <p class="project-description" id="project-description"></p>
+                    <div class="project-meta">
+                        <span class="project-version" id="project-version"></span>
+                    </div>
+                </div>
                 <div class="view-header">
                     <h2 class="view-title">Your Decks</h2>
                     <div class="stats" id="deck-stats"></div>
@@ -39,11 +46,6 @@
                         <input type="text" id="deck-search" placeholder="Search decks..." oninput="handleSearch(event)">
                     </div>
                     <div class="filter-controls">
-                        <select id="deck-sort" onchange="handleSort(event)" class="sort-select">
-                            <option value="name">Sort by Name</option>
-                            <option value="cards">Sort by Card Count</option>
-                            <option value="dependencies">Sort by Dependencies</option>
-                        </select>
                         <div class="view-toggle">
                             <button id="view-grid" class="view-btn active" onclick="setViewMode('grid')" title="Grid view">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

@@ -1,5 +1,0 @@
-{
-  "front": "What is pdb (Python Debugger)?",
-  "back": "Built-in debugger. Set breakpoint with import pdb; pdb.set_trace(). Step through code interactively.",
-  "display_name": "Python Debugger (pdb)"
-}

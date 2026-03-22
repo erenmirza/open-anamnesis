@@ -1,5 +1,0 @@
-{
-  "front": "What is the collections module?",
-  "back": "Provides specialized container types: Counter, defaultdict, namedtuple, deque, OrderedDict",
-  "display_name": "collections Module"
-}

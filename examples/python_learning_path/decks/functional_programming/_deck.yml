@@ -1,4 +1,0 @@
-depends_on:
-- functions
-description: Functional programming concepts in Python
-name: Functional Programming

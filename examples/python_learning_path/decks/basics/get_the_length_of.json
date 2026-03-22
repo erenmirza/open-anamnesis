@@ -1,5 +1,0 @@
-{
-  "front": "How do you get the length of a collection?",
-  "back": "Use the len() function. Example: len([1,2,3]) returns 3, len('hello') returns 5",
-  "display_name": "Finding Length"
-}

@@ -1,5 +1,0 @@
-{
-  "front": "How do you work with JSON files?",
-  "back": "Import json. json.load(f) reads JSON from file. json.dump(data, f) writes JSON to file.",
-  "display_name": "JSON Files"
-}

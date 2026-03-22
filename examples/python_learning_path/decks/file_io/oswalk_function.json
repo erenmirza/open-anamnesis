@@ -1,5 +1,0 @@
-{
-  "front": "What is the os.walk() function?",
-  "back": "Recursively traverses directory tree. Yields tuples of (dirpath, dirnames, filenames). Useful for finding files.",
-  "display_name": "os.walk()"
-}

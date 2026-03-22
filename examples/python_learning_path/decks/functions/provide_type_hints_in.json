@@ -1,5 +1,0 @@
-{
-  "front": "How do you provide type hints in functions?",
-  "back": "Use arrows and colons: def add(a: int, b: int) -> int: return a + b. Improves code clarity and IDE support.",
-  "display_name": "Type Hints"
-}

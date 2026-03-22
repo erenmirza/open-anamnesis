@@ -71,8 +71,8 @@ Command-line interface for user interactions.
 
 **Commands:**
 - `anamnesis init` - Create new project
-- `anamnesis-compile` - Validate project
-- `anamnesis-build` - Build and serve
+- `anamnesis compile` - Validate project
+- `anamnesis build` - Build and serve
 
 ## Data Flow
 
@@ -96,14 +96,18 @@ Web Interface / Static Files
 
 ```
 my_project/
-├── project.yml              # Project metadata
+├── _project.yml             # Project metadata
 ├── decks/
 │   ├── deck_1/
-│   │   ├── deck.yml        # Deck metadata
-│   │   └── cards.json      # Card data
+│   │   ├── _deck.yml        # Deck metadata
+│   │   ├── card_1.json      # Card content
+│   │   ├── card_1.yml       # Card metadata
+│   │   ├── card_2.json
+│   │   └── card_2.yml
 │   └── deck_2/
-│       ├── deck.yml
-│       └── cards.json
+│       ├── _deck.yml
+│       ├── card_a.json
+│       └── card_a.yml
 └── build/                   # Generated files
     ├── index.html
     ├── manifest.json
@@ -114,32 +118,33 @@ my_project/
 
 ### Config Files
 
-**project.yml**
+**_project.yml**
 ```yaml
 name: Project Name
 description: Description
 version: 1.0.0
 ```
 
-**deck.yml**
+**_deck.yml** (in each deck directory)
 ```yaml
-name: Deck Name
+display_name: Deck Name
 description: Description
 depends_on:
   - prerequisite_deck
 ```
 
-**cards.json**
+**card_name.json** (individual card files)
 ```json
-[
-  {
-    "id": "unique_id",
-    "front": "Question text",
-    "back": "Answer text",
-    "tags": ["tag1", "tag2"],
-    "difficulty": "easy"
-  }
-]
+{
+  "display_name": "Card Title",
+  "front": "Question text",
+  "back": "Answer text"
+}
+```
+
+**card_name.yml** (card metadata)
+```yaml
+depends_on: other_card_id  # or null for first card
 ```
 
 ## Implementation Details

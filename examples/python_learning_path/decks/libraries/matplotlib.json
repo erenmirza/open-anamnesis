@@ -1,5 +1,0 @@
-{
-  "front": "What is Matplotlib?",
-  "back": "Library for creating visualizations and plots. pyplot interface most common. import matplotlib.pyplot as plt",
-  "display_name": "Matplotlib"
-}

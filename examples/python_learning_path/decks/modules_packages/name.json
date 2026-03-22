@@ -1,5 +1,0 @@
-{
-  "front": "What is __name__?",
-  "back": "Special variable equal to '__main__' when script runs directly, module name when imported. Used for conditional execution.",
-  "display_name": "__name__"
-}

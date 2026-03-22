@@ -1,5 +1,0 @@
-{
-  "front": "What is enumerate()?",
-  "back": "Adds index to iterable. enumerate(['a','b']) returns [(0,'a'), (1,'b')]",
-  "display_name": "enumerate()"
-}

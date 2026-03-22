@@ -4,11 +4,11 @@ Compiler module - validates all project files
 
 from pathlib import Path
 from typing import Dict, List, Any
+
 import yaml
-import json
+
 from .project import Project
 from .deck import Deck
-from jsonschema import validate, ValidationError
 
 
 class Compiler:
@@ -28,7 +28,7 @@ class Compiler:
         cards_count = 0
         
         try:
-            # Validate project.yml
+            # Validate _project.yml
             self._validate_project_yml()
             
             # Get all decks
@@ -66,25 +66,25 @@ class Compiler:
         }
     
     def _validate_project_yml(self) -> None:
-        """Validate project.yml structure"""
+        """Validate _project.yml structure"""
         if not self.project.config_file.exists():
-            self.errors.append("Missing project.yml in project root")
+            self.errors.append("Missing _project.yml in project root")
             return
-        
+
         try:
             with open(self.project.config_file, "r") as f:
                 config = yaml.safe_load(f)
-            
+
             # Check for required fields
             if config is None:
-                self.errors.append("project.yml is empty")
+                self.errors.append("_project.yml is empty")
             elif not isinstance(config, dict):
-                self.errors.append("project.yml must contain a dictionary")
-            
+                self.errors.append("_project.yml must contain a dictionary")
+
         except yaml.YAMLError as e:
-            self.errors.append(f"Invalid YAML in project.yml: {e}")
+            self.errors.append(f"Invalid YAML in _project.yml: {e}")
         except Exception as e:
-            self.errors.append(f"Error reading project.yml: {e}")
+            self.errors.append(f"Error reading _project.yml: {e}")
     
     def _validate_dependencies(self) -> None:
         """Validate deck dependencies are valid"""

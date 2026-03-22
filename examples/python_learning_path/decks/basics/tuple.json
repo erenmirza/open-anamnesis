@@ -1,5 +1,0 @@
-{
-  "front": "What is a tuple?",
-  "back": "An ordered, immutable collection of items. Created with parentheses: (1, 2, 3). Cannot be modified after creation.",
-  "display_name": "Tuples"
-}

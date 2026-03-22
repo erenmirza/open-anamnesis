@@ -1,4 +1,0 @@
-depends_on:
-- modules_packages
-description: Working with popular Python libraries
-name: Libraries & Popular Packages

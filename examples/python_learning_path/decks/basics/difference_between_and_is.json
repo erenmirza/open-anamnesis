@@ -1,5 +1,0 @@
-{
-  "front": "What is the difference between == and is?",
-  "back": "== checks value equality, is checks if they are the same object in memory.",
-  "display_name": "== vs is"
-}

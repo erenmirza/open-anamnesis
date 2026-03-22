@@ -1,5 +1,0 @@
-{
-  "front": "What is __doc__?",
-  "back": "Docstring of module, function, or class. Accessible as obj.__doc__. Can be retrieved with help()",
-  "display_name": "__doc__"
-}

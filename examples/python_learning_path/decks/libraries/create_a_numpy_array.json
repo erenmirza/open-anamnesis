@@ -1,5 +1,0 @@
-{
-  "front": "How do you create a NumPy array?",
-  "back": "np.array([1,2,3]), np.zeros(5), np.ones((2,3)), np.arange(10), np.linspace(0,1,50)",
-  "display_name": "NumPy Arrays"
-}

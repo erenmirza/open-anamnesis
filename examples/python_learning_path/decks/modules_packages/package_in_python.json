@@ -1,5 +1,0 @@
-{
-  "front": "What is a package in Python?",
-  "back": "A directory containing __init__.py file and modules. Allows organizing related modules hierarchically.",
-  "display_name": "Packages"
-}

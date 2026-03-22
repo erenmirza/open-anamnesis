@@ -1,5 +1,0 @@
-{
-  "front": "What is the difference between raise and raise from?",
-  "back": "raise re-raises exception. raise ... from ... chains exceptions, showing both original and new exception.",
-  "display_name": "raise vs raise from"
-}

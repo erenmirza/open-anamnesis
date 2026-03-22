@@ -1,5 +1,0 @@
-{
-  "front": "What is the difference between syntax error and exception?",
-  "back": "Syntax error occurs during parsing, prevents code execution. Exception occurs at runtime during execution.",
-  "display_name": "Syntax vs Runtime Errors"
-}

@@ -1,5 +1,0 @@
-{
-  "front": "How do you remove duplicates from a list?",
-  "back": "Convert to set then back to list: list(set(my_list)). Or use dict.fromkeys() to preserve order.",
-  "display_name": "Removing Duplicates"
-}

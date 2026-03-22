@@ -2,9 +2,10 @@
 CLI module for Anamnesis. Provides commands for project initialization, compilation, and building.
 """
 
-import click
-import os
 from pathlib import Path
+
+import click
+
 from .project import Project
 from .compiler import Compiler
 from .builder import Builder

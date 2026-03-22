@@ -1,5 +1,0 @@
-{
-  "front": "What are built-in exception types?",
-  "back": "ValueError, TypeError, KeyError, IndexError, AttributeError, FileNotFoundError, ZeroDivisionError, etc.",
-  "display_name": "Built-in Exceptions"
-}

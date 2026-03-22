@@ -1,5 +1,0 @@
-{
-  "front": "How do you write to a file?",
-  "back": "Use open() with 'w' or 'a' mode. Then f.write('string') or f.writelines(list). Don't forget f.close()",
-  "display_name": "Writing Files"
-}

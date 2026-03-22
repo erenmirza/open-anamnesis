@@ -1,5 +1,0 @@
-{
-  "front": "What does **kwargs do?",
-  "back": "Allows a function to accept any number of keyword arguments as a dictionary.",
-  "display_name": "**kwargs"
-}

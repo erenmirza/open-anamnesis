@@ -1,5 +1,0 @@
-{
-  "front": "What is the finally block?",
-  "back": "A block executed regardless of whether an exception occurred. Used for cleanup. Syntax: try: ... finally: cleanup_code",
-  "display_name": "finally Block"
-}

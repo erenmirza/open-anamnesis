@@ -1,5 +1,0 @@
-{
-  "front": "What is traceback and how do you use it?",
-  "back": "Module that prints exception information. Use traceback.print_exc() to print full traceback for debugging.",
-  "display_name": "Tracebacks"
-}

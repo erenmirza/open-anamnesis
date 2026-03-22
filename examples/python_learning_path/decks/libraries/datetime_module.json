@@ -1,5 +1,0 @@
-{
-  "front": "What is datetime module?",
-  "back": "For working with dates and times. datetime.datetime for timestamps, date for dates, timedelta for durations.",
-  "display_name": "datetime Module"
-}

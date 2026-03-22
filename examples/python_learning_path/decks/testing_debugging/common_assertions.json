@@ -1,5 +1,0 @@
-{
-  "front": "What are common assertions?",
-  "back": "assertEqual(a,b), assertTrue(x), assertFalse(x), assertIn(a,b), assertRaises(exception)",
-  "display_name": "Common Assertions"
-}

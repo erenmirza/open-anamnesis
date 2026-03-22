@@ -1,5 +1,0 @@
-{
-  "front": "What is a set?",
-  "back": "An unordered collection of unique items. Created with curly braces: {1, 2, 3}. Automatically removes duplicates.",
-  "display_name": "Sets"
-}

@@ -1,5 +1,0 @@
-{
-  "front": "What is pytest?",
-  "back": "Python testing framework. Write test functions starting with test_. Run with 'pytest' command.",
-  "display_name": "pytest"
-}

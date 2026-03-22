@@ -1,5 +1,0 @@
-{
-  "front": "What is the difference between print() and return?",
-  "back": "print() displays output to console but returns None. return sends a value back to the caller and exits the function.",
-  "display_name": "print() vs return"
-}

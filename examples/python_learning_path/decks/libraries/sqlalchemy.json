@@ -1,5 +1,0 @@
-{
-  "front": "What is SQLAlchemy?",
-  "back": "ORM (Object-Relational Mapping) for database work. Maps Python classes to database tables. Supports multiple DB backends.",
-  "display_name": "SQLAlchemy"
-}

@@ -1,5 +1,0 @@
-{
-  "front": "What is the with statement for files?",
-  "back": "Syntax: with open('file.txt') as f: code. Automatically closes file even if error occurs. Recommended approach.",
-  "display_name": "with for Files"
-}

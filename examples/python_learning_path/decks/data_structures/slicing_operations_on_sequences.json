@@ -1,5 +1,0 @@
-{
-  "front": "What are slicing operations on sequences?",
-  "back": "Syntax: sequence[start:stop:step]. Returns new sequence without modifying original. Negative indices count from end.",
-  "display_name": "Sequence Slicing"
-}

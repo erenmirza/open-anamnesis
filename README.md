@@ -29,14 +29,18 @@ anamnesis-build
 # Visit http://127.0.0.1:5000
 ```
 
+## Example Project
+
+Check out `examples/cli_guide/` for a complete example that teaches you how to use Anamnesis through interactive flashcards!
+
 ## Project Structure
 
 ```
 my_project/
-├── project.yml                 # name, description, version
+├── _project.yml                # name, description, version
 ├── decks/
 │   └── deck_name/
-│       ├── _deck.yml           # name, description, depends_on
+│       ├── _deck.yml           # display_name, description, depends_on
 │       ├── card_name.json      # card front and back
 │       └── card_name.yml       # card depends_on
 └── build/                      # generated files
@@ -75,14 +79,16 @@ anamnesis-build [-d DIR] [-p PORT]         # Build and serve (default: port 5000
 
 ## Validation
 
-The compiler checks for:
-- Valid YAML and JSON syntax
-- Required card fields (display_name, front, back)
-- Character limits for all text fields
-- Unique card IDs within decks
-- Valid dependency resolution (decks can have multiple dependencies, cards only one)
-- Cards cannot reference cards in other decks
-- Each deck must have exactly one first card (no dependency)
+The compiler validates:
+- **Syntax**: Valid YAML and JSON
+- **Required fields**: display_name, front, back for all cards
+- **Character limits**: display_name (60), front (200), back (500)
+- **Unique IDs**: Card IDs must be unique within each deck
+- **Dependencies**:
+  - Decks can depend on multiple decks
+  - Cards depend on exactly one card (or null for first card)
+  - Cards cannot reference cards in other decks
+  - Each deck must have exactly one first card
 
 ## Development
 

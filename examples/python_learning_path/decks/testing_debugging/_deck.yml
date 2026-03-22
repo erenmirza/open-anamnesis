@@ -1,5 +1,0 @@
-depends_on:
-- functions
-- error_handling
-description: Testing code and debugging techniques
-name: Testing & Debugging

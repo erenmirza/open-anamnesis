@@ -1,5 +1,0 @@
-{
-  "front": "What is the difference between shallow and deep copy?",
-  "back": "Shallow copy copies the object but not nested objects. Deep copy recursively copies all nested objects. Use copy.deepcopy()",
-  "display_name": "Shallow vs Deep Copy"
-}

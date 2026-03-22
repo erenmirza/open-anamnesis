@@ -1,5 +1,0 @@
-{
-  "front": "How do you convert data types?",
-  "back": "Use type conversion functions: int(), str(), float(), list(), dict(), tuple(), set(). Example: int('42') returns 42",
-  "display_name": "Type Conversion"
-}

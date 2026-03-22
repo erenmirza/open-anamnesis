@@ -1,5 +1,0 @@
-{
-  "front": "What is linting?",
-  "back": "Static code analysis for style and error detection. Tools: pylint, flake8, black. Catches bugs early.",
-  "display_name": "Linting"
-}

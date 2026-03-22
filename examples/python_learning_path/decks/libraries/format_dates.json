@@ -1,5 +1,0 @@
-{
-  "front": "How do you format dates?",
-  "back": "datetime.strftime(format) converts to string. datetime.strptime(string, format) converts from string.",
-  "display_name": "Date Formatting"
-}

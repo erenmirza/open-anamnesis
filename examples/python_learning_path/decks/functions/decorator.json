@@ -1,5 +1,0 @@
-{
-  "front": "What is a decorator?",
-  "back": "A function that modifies another function. Applied with @ symbol. Example: @property, @staticmethod",
-  "display_name": "Decorators"
-}

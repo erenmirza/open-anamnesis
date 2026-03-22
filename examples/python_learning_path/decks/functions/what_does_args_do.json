@@ -1,5 +1,0 @@
-{
-  "front": "What does *args do?",
-  "back": "Allows a function to accept any number of positional arguments as a tuple.",
-  "display_name": "*args"
-}

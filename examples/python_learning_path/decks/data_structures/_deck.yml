@@ -1,4 +1,0 @@
-depends_on:
-- basics
-description: Advanced data structures and their operations
-name: Data Structures

@@ -1,5 +1,0 @@
-{
-  "front": "What is a return statement?",
-  "back": "Sends a value back to the caller. A function can return multiple values as a tuple: return a, b, c",
-  "display_name": "Return Statement"
-}

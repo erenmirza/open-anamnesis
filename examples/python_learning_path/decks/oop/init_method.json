@@ -1,5 +1,0 @@
-{
-  "front": "What is the __init__ method?",
-  "back": "The constructor method that initializes an object when it's created.",
-  "display_name": "__init__ Method"
-}

@@ -1,5 +1,0 @@
-{
-  "front": "What is generator expression?",
-  "back": "Like list comprehension but with parentheses: (expr for item in iterable). Lazy evaluation, memory efficient.",
-  "display_name": "Generator Expressions"
-}

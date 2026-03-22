@@ -1,5 +1,0 @@
-{
-  "front": "What is an abstract class?",
-  "back": "A class from abc module that cannot be instantiated and defines methods subclasses must implement.",
-  "display_name": "Abstract Classes"
-}

@@ -1,4 +1,0 @@
-depends_on:
-- functions
-description: Creating and using Python modules and packages
-name: Modules & Packages

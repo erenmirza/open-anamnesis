@@ -8,7 +8,6 @@ let shuffledQuestions = []; // Store shuffled order of questions
 let allDecks = [];
 let filteredDecks = [];
 let searchQuery = '';
-let sortBy = 'name'; // name, cards, dependencies
 let viewMode = 'grid'; // grid, list, or lineage
 let cardsViewMode = 'grid'; // grid or list for cards
 
@@ -26,10 +25,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function initializeApp() {
     const projectData = manifest.project || {};
-    const projectTitle = document.getElementById('project-title');
-    if (projectTitle) {
-        projectTitle.textContent = projectData.description || '';
+
+    // Populate project info section
+    const projectName = document.getElementById('project-name');
+    const projectDescription = document.getElementById('project-description');
+    const projectVersion = document.getElementById('project-version');
+
+    if (projectName) {
+        projectName.textContent = projectData.name || 'Anamnesis Project';
     }
+    if (projectDescription) {
+        projectDescription.textContent = projectData.description || '';
+    }
+    if (projectVersion) {
+        projectVersion.textContent = projectData.version ? `v${projectData.version}` : '';
+    }
+
     filteredDecks = [...allDecks];
     showDecksView();
     updateViewModeButtons();
@@ -66,18 +77,8 @@ function applyFiltersAndSort() {
         return name.includes(query) || description.includes(query);
     });
 
-    // Sort decks
-    filteredDecks.sort((a, b) => {
-        switch(sortBy) {
-            case 'cards':
-                return b.cards.length - a.cards.length;
-            case 'dependencies':
-                return (b.metadata.depends_on?.length || 0) - (a.metadata.depends_on?.length || 0);
-            case 'name':
-            default:
-                return (a.metadata.name || a.id).localeCompare(b.metadata.name || b.id);
-        }
-    });
+    // Sort decks using topological sort based on dependencies
+    filteredDecks = topologicalSortDecks(filteredDecks);
 }
 
 function renderCurrentView() {
@@ -163,19 +164,21 @@ function showDeckView() {
 function renderDeckDependencies() {
     const container = document.getElementById('deck-dependencies');
 
-    // Create header with title and fullscreen button
+    // Create header with title and fullscreen button (same structure as homescreen)
     const header = document.createElement('div');
-    header.className = 'dependency-header';
-    const h4 = document.createElement('h4');
-    h4.textContent = 'Deck Dependencies';
-    header.appendChild(h4);
+    header.className = 'lineage-section-header';
+    const h3 = document.createElement('h3');
+    h3.className = 'lineage-section-title';
+    h3.textContent = 'Deck Dependencies';
+    header.appendChild(h3);
 
     const fullscreenBtn = document.createElement('button');
     fullscreenBtn.className = 'fullscreen-btn';
-    fullscreenBtn.title = 'View Full Lineage';
-    fullscreenBtn.onclick = () => showDeckLineageFullscreen(currentDeck.id);
+    fullscreenBtn.title = 'Toggle Fullscreen';
+    fullscreenBtn.id = 'deck-dependencies-fullscreen-btn';
+    fullscreenBtn.onclick = () => toggleDeckDependenciesFullscreen();
     fullscreenBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg id="deck-fullscreen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
         </svg>
     `;
@@ -184,9 +187,9 @@ function renderDeckDependencies() {
     container.innerHTML = '';
     container.appendChild(header);
 
-    // Create lineage graph container
+    // Create lineage graph container (use same class as homescreen for consistent styling)
     const graphContainer = document.createElement('div');
-    graphContainer.className = 'deck-lineage-graph';
+    graphContainer.className = 'homescreen-lineage-graph';
     container.appendChild(graphContainer);
 
     // Build and render the limited lineage
@@ -197,7 +200,7 @@ function renderDeckDependencies() {
         return;
     }
 
-    renderDeckLineageGraph(lineageData, currentDeck.id, graphContainer);
+    renderDeckLineageGraph(lineageData, currentDeck.id, graphContainer, false);
     enableDragToPan(graphContainer);
 }
 
@@ -223,7 +226,10 @@ function renderCardsList() {
     cardsList.innerHTML = '';
     cardsList.className = cardsViewMode === 'grid' ? 'cards-list' : 'cards-list-view';
 
-    currentDeck.cards.forEach((card, index) => {
+    // Sort cards topologically based on dependencies
+    const sortedCards = topologicalSortCards(currentDeck.cards);
+
+    sortedCards.forEach((card, index) => {
         const cardEl = document.createElement('div');
         cardEl.className = 'card-item';
 
@@ -504,18 +510,109 @@ function hideAllViews() {
     });
 }
 
+// Topological sorting functions
+function topologicalSortDecks(decks) {
+    const sorted = [];
+    const visited = new Set();
+    const visiting = new Set();
+
+    // Create a map for quick deck lookup
+    const deckMap = new Map(decks.map(d => [d.id, d]));
+
+    function visit(deckId) {
+        if (visited.has(deckId)) return;
+        if (visiting.has(deckId)) {
+            // Circular dependency detected, skip
+            return;
+        }
+
+        const deck = deckMap.get(deckId);
+        if (!deck) return;
+
+        visiting.add(deckId);
+
+        // Visit dependencies first
+        const dependencies = deck.metadata.depends_on || [];
+        dependencies.forEach(depId => {
+            if (deckMap.has(depId)) {
+                visit(depId);
+            }
+        });
+
+        visiting.delete(deckId);
+        visited.add(deckId);
+        sorted.push(deck);
+    }
+
+    // Visit all decks
+    decks.forEach(deck => visit(deck.id));
+
+    return sorted;
+}
+
+function getDeckDepth(deckId, decks) {
+    const deckMap = new Map(decks.map(d => [d.id, d]));
+    const visited = new Set();
+
+    function getDepth(id) {
+        if (visited.has(id)) return 0; // Circular dependency
+        visited.add(id);
+
+        const deck = deckMap.get(id);
+        if (!deck) return 0;
+
+        const dependencies = deck.metadata.depends_on || [];
+        if (dependencies.length === 0) return 0;
+
+        const maxDepth = Math.max(...dependencies.map(depId => getDepth(depId)));
+        return maxDepth + 1;
+    }
+
+    return getDepth(deckId);
+}
+
+function topologicalSortCards(cards) {
+    const sorted = [];
+    const visited = new Set();
+    const visiting = new Set();
+
+    // Create a map for quick card lookup
+    const cardMap = new Map(cards.map(c => [c.id, c]));
+
+    function visit(cardId) {
+        if (visited.has(cardId)) return;
+        if (visiting.has(cardId)) {
+            // Circular dependency detected, skip
+            return;
+        }
+
+        const card = cardMap.get(cardId);
+        if (!card) return;
+
+        visiting.add(cardId);
+
+        // Visit dependency first (cards have single dependency)
+        if (card.depends_on && cardMap.has(card.depends_on)) {
+            visit(card.depends_on);
+        }
+
+        visiting.delete(cardId);
+        visited.add(cardId);
+        sorted.push(card);
+    }
+
+    // Visit all cards
+    cards.forEach(card => visit(card.id));
+
+    return sorted;
+}
+
 // Search and filter functions
 function handleSearch(event) {
     searchQuery = event.target.value;
     applyFiltersAndSort();
     renderCurrentView();
     updateDeckStats();
-}
-
-function handleSort(event) {
-    sortBy = event.target.value;
-    applyFiltersAndSort();
-    renderCurrentView();
 }
 
 function setViewMode(mode) {
@@ -729,10 +826,10 @@ function renderDeckLineageGraph(lineage, currentId, containerEl = null, isHomesc
         nodesByDepth.get(depth).push(node);
     });
 
-    // Calculate positions and create nodes (vertical layout: top to bottom)
+    // Calculate positions and create nodes (horizontal layout: left to right)
     const nodePositions = new Map();
-    const horizontalSpacing = 320; // Space between siblings
-    const verticalSpacing = 180; // Space between depth levels
+    const horizontalSpacing = 300; // Space between depth levels (left to right)
+    const verticalSpacing = 180; // Space between siblings (top to bottom)
 
     nodesByDepth.forEach((nodes, depth) => {
         nodes.forEach((node, index) => {
@@ -740,9 +837,9 @@ function renderDeckLineageGraph(lineage, currentId, containerEl = null, isHomesc
             nodeEl.className = 'lineage-node deck-node' + (node.isCurrent ? ' current' : '');
             nodeEl.setAttribute('data-node-id', node.id);
 
-            // Position horizontally by index, vertically by depth
-            const x = index * horizontalSpacing + 50;
-            const y = (depth - minDepth) * verticalSpacing + 50;
+            // Position horizontally by depth, vertically by index
+            const x = (depth - minDepth) * horizontalSpacing + 50;
+            const y = index * verticalSpacing + 50;
 
             nodeEl.style.position = 'absolute';
             nodeEl.style.left = `${x}px`;
@@ -782,12 +879,20 @@ function renderDeckLineageGraph(lineage, currentId, containerEl = null, isHomesc
 
     // Set canvas size based on content
     const maxNodesAtDepth = Math.max(...Array.from(nodesByDepth.values()).map(nodes => nodes.length));
-    canvas.style.width = `${maxNodesAtDepth * horizontalSpacing + 300}px`;
-    canvas.style.height = `${(depthRange + 1) * verticalSpacing + 200}px`;
+    const canvasWidth = (depthRange + 1) * horizontalSpacing + 300;
+    const canvasHeight = Math.max(maxNodesAtDepth * verticalSpacing + 100, 300); // Minimum 300px height, 50px top + 50px bottom margin
+
+    canvas.style.width = `${canvasWidth}px`;
+    canvas.style.height = `${canvasHeight}px`;
+
+    // Set container min-height to accommodate the canvas
+    if (containerEl) {
+        containerEl.style.minHeight = `${canvasHeight + 50}px`;
+    }
 
     // Draw edges between nodes
     if (lineage.edges.length > 0) {
-        renderEdgesVertical(canvas, lineage.edges, nodePositions);
+        renderEdgesHorizontal(canvas, lineage.edges, nodePositions);
     }
 }
 
@@ -818,10 +923,9 @@ function renderEdgesHorizontal(canvas, edges, nodePositions) {
             // Get element dimensions
             const fromWidth = fromEl.offsetWidth;
             const fromHeight = fromEl.offsetHeight;
-            const toWidth = toEl.offsetWidth;
             const toHeight = toEl.offsetHeight;
 
-            // Calculate connection points (right side of from, left side of to)
+            // Calculate connection points (right of from, left of to)
             const x1 = fromPos.x + fromWidth;
             const y1 = fromPos.y + fromHeight / 2;
             const x2 = toPos.x;
@@ -831,76 +935,6 @@ function renderEdgesHorizontal(canvas, edges, nodePositions) {
             const midX = (x1 + x2) / 2;
             const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
             const d = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
-            path.setAttribute('d', d);
-            path.setAttribute('stroke', '#4f46e5');
-            path.setAttribute('stroke-width', '2');
-            path.setAttribute('fill', 'none');
-            path.setAttribute('opacity', '0.5');
-            path.setAttribute('class', 'edge-path');
-
-            // Add arrow marker
-            const arrowId = `arrow-${edge.from}-${edge.to}-${Math.random().toString(36).substr(2, 9)}`;
-            const defs = svg.querySelector('defs') || svg.appendChild(document.createElementNS('http://www.w3.org/2000/svg', 'defs'));
-            const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
-            marker.setAttribute('id', arrowId);
-            marker.setAttribute('markerWidth', '10');
-            marker.setAttribute('markerHeight', '10');
-            marker.setAttribute('refX', '9');
-            marker.setAttribute('refY', '3');
-            marker.setAttribute('orient', 'auto');
-            marker.setAttribute('markerUnits', 'strokeWidth');
-            const arrowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            arrowPath.setAttribute('d', 'M0,0 L0,6 L9,3 z');
-            arrowPath.setAttribute('fill', '#4f46e5');
-            arrowPath.setAttribute('opacity', '0.5');
-            marker.appendChild(arrowPath);
-            defs.appendChild(marker);
-
-            path.setAttribute('marker-end', `url(#${arrowId})`);
-            svg.appendChild(path);
-        });
-    }, 50);
-}
-
-function renderEdgesVertical(canvas, edges, nodePositions) {
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('class', 'lineage-edges');
-    svg.style.position = 'absolute';
-    svg.style.top = '0';
-    svg.style.left = '0';
-    svg.style.width = '100%';
-    svg.style.height = '100%';
-    svg.style.pointerEvents = 'none';
-    svg.style.zIndex = '0';
-
-    canvas.insertBefore(svg, canvas.firstChild);
-
-    // Wait for layout to complete
-    setTimeout(() => {
-        edges.forEach(edge => {
-            const fromPos = nodePositions.get(edge.from);
-            const toPos = nodePositions.get(edge.to);
-
-            if (!fromPos || !toPos) return;
-
-            const fromEl = fromPos.element;
-            const toEl = toPos.element;
-
-            // Get element dimensions
-            const fromWidth = fromEl.offsetWidth;
-            const fromHeight = fromEl.offsetHeight;
-            const toWidth = toEl.offsetWidth;
-
-            // Calculate connection points (bottom of from, top of to)
-            const x1 = fromPos.x + fromWidth / 2;
-            const y1 = fromPos.y + fromHeight;
-            const x2 = toPos.x + toWidth / 2;
-            const y2 = toPos.y;
-
-            // Create curved path with vertical bezier
-            const midY = (y1 + y2) / 2;
-            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            const d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
             path.setAttribute('d', d);
             path.setAttribute('stroke', '#4f46e5');
             path.setAttribute('stroke-width', '2');
@@ -1089,31 +1123,36 @@ function toggleHomescreenLineageFullscreen() {
     }
 }
 
-function showDeckLineageFullscreen(deckId) {
-    // First show the lineage view
-    showDeckLineage(deckId);
+function toggleDeckDependenciesFullscreen() {
+    const deckDependenciesContainer = document.getElementById('deck-dependencies');
+    const fullscreenIcon = document.getElementById('deck-fullscreen-icon');
 
-    // Then enter fullscreen
-    const lineageView = document.getElementById('lineage-view');
     if (!document.fullscreenElement) {
-        lineageView.requestFullscreen().catch(err => {
+        deckDependenciesContainer.requestFullscreen().then(() => {
+            // Update icon to exit fullscreen
+            if (fullscreenIcon) {
+                fullscreenIcon.innerHTML = '<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>';
+            }
+        }).catch(err => {
             console.error('Error entering fullscreen:', err);
         });
+    } else {
+        document.exitFullscreen();
     }
 }
 
 // Listen for fullscreen changes to update icons
 document.addEventListener('fullscreenchange', () => {
     const homescreenIcon = document.getElementById('homescreen-fullscreen-icon');
-    const cardsIcon = document.getElementById('cards-fullscreen-icon');
+    const deckIcon = document.getElementById('deck-fullscreen-icon');
 
     if (!document.fullscreenElement) {
         // Restore expand icons
         if (homescreenIcon) {
             homescreenIcon.innerHTML = '<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>';
         }
-        if (cardsIcon) {
-            cardsIcon.innerHTML = '<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>';
+        if (deckIcon) {
+            deckIcon.innerHTML = '<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>';
         }
     }
 });

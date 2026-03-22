@@ -3,9 +3,10 @@ Deck module - represents a deck containing cards
 """
 
 import json
-import yaml
 from pathlib import Path
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Tuple
+
+import yaml
 
 
 class Deck:
@@ -24,7 +25,7 @@ class Deck:
             with open(self.config_file, "r") as f:
                 return yaml.safe_load(f) or {}
         return {
-            "name": self.name,
+            "display_name": self.name,
             "description": "",
             "depends_on": [],
         }
@@ -66,7 +67,7 @@ class Deck:
         """Get deck metadata"""
         return {
             "id": self.name,
-            "name": self.config.get("name", self.name),
+            "name": self.config.get("display_name", self.name),
             "description": self.config.get("description", ""),
             "depends_on": self.config.get("depends_on", []),
             "card_count": len(self.cards),
@@ -76,7 +77,7 @@ class Deck:
         """Get all cards in the deck"""
         return self.cards
     
-    def validate(self) -> tuple[bool, List[str]]:
+    def validate(self) -> Tuple[bool, List[str]]:
         """Validate deck structure and content"""
         errors = []
 

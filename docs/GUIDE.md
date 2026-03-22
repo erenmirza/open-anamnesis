@@ -38,24 +38,30 @@ pytest tests/
 
 ```
 open-anamnesis/
-├── open_anamnesis/
-│   ├── __init__.py         # Package exports
-│   ├── cli.py              # Command-line interface
-│   ├── project.py          # Project management
-│   ├── deck.py             # Deck management
-│   ├── card.py             # Card definition
-│   ├── compiler.py         # Validation logic
-│   └── builder.py          # Web generation
+├── src/
+│   └── open_anamnesis/
+│       ├── __init__.py         # Package exports
+│       ├── cli.py              # Command-line interface
+│       ├── project.py          # Project management
+│       ├── deck.py             # Deck management
+│       ├── card.py             # Card definition
+│       ├── compiler.py         # Validation logic
+│       ├── builder.py          # Web generation
+│       ├── templates/
+│       │   └── index.html      # HTML template
+│       └── static/
+│           ├── style.css       # Styles
+│           └── app.js          # JavaScript
 ├── tests/
-│   ├── test_core.py        # Unit tests
+│   ├── test_core.py            # Unit tests
 │   └── __init__.py
+├── examples/
+│   └── cli_guide/              # Example project
 ├── docs/
-│   ├── ARCHITECTURE.md     # System design
-│   └── GUIDE.md            # This file
-├── setup.py                # Package configuration
-├── pyproject.toml          # Modern Python packaging
-├── requirements.txt        # Dependencies
-└── README.md               # User documentation
+│   ├── ARCHITECTURE.md         # System design
+│   └── GUIDE.md                # This file
+├── pyproject.toml              # Modern Python packaging
+└── README.md                   # User documentation
 ```
 
 ## Development Workflow
@@ -281,9 +287,8 @@ python -m json.tool deck/cards.json
 
 - **click** - CLI framework
 - **pyyaml** - YAML parsing
-- **jsonschema** - JSON validation
-- **jinja2** - Template rendering
-- **flask** - Web server
+- **jinja2** - Template rendering (future use)
+- Built-in HTTP server for serving the web interface
 
 ## Getting Help
 

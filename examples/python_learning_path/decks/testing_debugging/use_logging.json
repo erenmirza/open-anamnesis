@@ -1,5 +1,0 @@
-{
-  "front": "How do you use logging?",
-  "back": "logging.basicConfig(). logging.debug(), logging.info(), logging.error(). Configurable levels and format.",
-  "display_name": "Using Logging"
-}

@@ -1,5 +1,0 @@
-{
-  "front": "What are the naming conventions for variables?",
-  "back": "Use lowercase letters, underscores for word separation. Example: my_variable. Avoid reserved keywords.",
-  "display_name": "Variable Naming"
-}

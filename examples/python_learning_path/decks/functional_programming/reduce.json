@@ -1,5 +1,0 @@
-{
-  "front": "What is reduce()?",
-  "back": "Accumulates values. from functools import reduce. reduce(function, iterable) returns single accumulated value.",
-  "display_name": "reduce()"
-}

@@ -1,5 +1,0 @@
-{
-  "front": "What are dunder methods?",
-  "back": "Double underscore methods like __str__, __repr__, __len__, __getitem__. Control object behavior in special contexts.",
-  "display_name": "Dunder Methods"
-}

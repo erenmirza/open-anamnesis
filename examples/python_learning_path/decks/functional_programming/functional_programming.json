@@ -1,5 +1,0 @@
-{
-  "front": "What is functional programming?",
-  "back": "Programming paradigm using pure functions and immutable data. Avoids side effects. Functions are first-class objects.",
-  "display_name": "Functional Programming"
-}

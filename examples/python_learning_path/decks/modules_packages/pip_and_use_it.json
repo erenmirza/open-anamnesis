@@ -1,5 +1,0 @@
-{
-  "front": "What is pip and how do you use it?",
-  "back": "Package installer for Python. pip install package_name. Also: pip list, pip uninstall, pip freeze",
-  "display_name": "pip"
-}

@@ -1,5 +1,0 @@
-{
-  "front": "What is a docstring?",
-  "back": "Documentation string for a function. Written in triple quotes right after the def line. Retrieved with help() or __doc__",
-  "display_name": "Docstrings"
-}

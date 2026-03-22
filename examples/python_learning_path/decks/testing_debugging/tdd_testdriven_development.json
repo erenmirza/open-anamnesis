@@ -1,5 +1,0 @@
-{
-  "front": "What is TDD (Test-Driven Development)?",
-  "back": "Write tests before code. Red-Green-Refactor cycle: fail, pass, improve. Ensures testable code.",
-  "display_name": "Test-Driven Development"
-}

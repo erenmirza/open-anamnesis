@@ -1,5 +1,0 @@
-{
-  "front": "What is regular expression (regex)?",
-  "back": "Pattern matching in strings. re module provides functions like re.search(), re.findall(), re.sub()",
-  "display_name": "Regular Expressions"
-}
