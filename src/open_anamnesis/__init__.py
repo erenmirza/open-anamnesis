@@ -2,7 +2,7 @@
 Open Anamnesis: A dbt-like platform for building and managing flashcard projects
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 from .project import Project
 from .deck import Deck

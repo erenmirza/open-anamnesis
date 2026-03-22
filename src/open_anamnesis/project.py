@@ -30,7 +30,7 @@ class Project:
         return {
             "name": self.config.get("name", "Anamnesis Project"),
             "description": self.config.get("description", ""),
-            "version": self.config.get("version", "0.1.0"),
+            "version": self.config.get("version", "0.1.1"),
         }
     
     def list_decks(self) -> List[str]:
@@ -53,7 +53,7 @@ class Project:
         project_config = {
             "name": project_name,
             "description": "My Anamnesis flashcard project",
-            "version": "0.1.0",
+            "version": "0.1.1",
         }
 
         with open(project_path / "_project.yml", "w", encoding="utf-8") as f:

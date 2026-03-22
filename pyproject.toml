@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "open-anamnesis"
-version = "0.1.0"
+version = "0.1.1"
 description = "A dbt-like platform for building and managing flashcard projects"
 readme = "README.md"
 license = {text = "MIT"}
@@ -48,3 +48,6 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+open_anamnesis = ["static/*", "templates/*"]
