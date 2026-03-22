@@ -4,64 +4,76 @@ Card module - represents a single flashcard
 
 from typing import Dict, List, Any, Optional
 
+# Character limits for card fields
+MAX_DISPLAY_NAME_LENGTH = 60
+MAX_FRONT_LENGTH = 200
+MAX_BACK_LENGTH = 500
+
 
 class Card:
     """Represents a single flashcard with front/back content"""
-    
+
     def __init__(self, card_data: Dict[str, Any]):
         """
         Initialize a card from a dictionary.
-        
+
         Required fields:
-        - id: Unique identifier for the card
+        - display_name: Human-readable name for the card
         - front: Question or prompt
         - back: Answer or content
-        
+
         Optional fields:
-        - tags: List of tags for categorization
-        - difficulty: Difficulty level (easy, medium, hard)
-        - related_cards: List of related card IDs
+        - id: Unique identifier (auto-generated from filename if not provided)
+        - depends_on: Single card ID this card depends on
+        - metadata: Additional metadata
         """
         self.id = card_data.get("id")
+        self.display_name = card_data.get("display_name")
         self.front = card_data.get("front")
         self.back = card_data.get("back")
-        self.tags = card_data.get("tags", [])
-        self.difficulty = card_data.get("difficulty", "medium")
-        self.related_cards = card_data.get("related_cards", [])
+        self.depends_on = card_data.get("depends_on")
         self.metadata = card_data.get("metadata", {})
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert card to dictionary"""
         return {
             "id": self.id,
+            "display_name": self.display_name,
             "front": self.front,
             "back": self.back,
-            "tags": self.tags,
-            "difficulty": self.difficulty,
-            "related_cards": self.related_cards,
+            "depends_on": self.depends_on,
             "metadata": self.metadata,
         }
     
     def validate(self) -> tuple[bool, List[str]]:
-        """Validate card has all required fields"""
+        """Validate card has all required fields and character limits"""
         errors = []
-        
-        if not self.id:
-            errors.append("Card missing required field: id")
-        
+
+        card_ref = f"Card {self.id}" if self.id else "Card"
+
+        # Check required fields
+        if not self.display_name:
+            errors.append(f"{card_ref}: missing required field: display_name")
+        elif len(self.display_name) > MAX_DISPLAY_NAME_LENGTH:
+            errors.append(
+                f"{card_ref}: display_name exceeds maximum length of {MAX_DISPLAY_NAME_LENGTH} characters "
+                f"(current: {len(self.display_name)})"
+            )
+
         if not self.front:
-            errors.append("Card missing required field: front")
-        
+            errors.append(f"{card_ref}: missing required field: front")
+        elif len(self.front) > MAX_FRONT_LENGTH:
+            errors.append(
+                f"{card_ref}: front exceeds maximum length of {MAX_FRONT_LENGTH} characters "
+                f"(current: {len(self.front)})"
+            )
+
         if not self.back:
-            errors.append("Card missing required field: back")
-        
-        if not isinstance(self.tags, list):
-            errors.append(f"Card {self.id}: tags must be a list")
-        
-        if self.difficulty not in ["easy", "medium", "hard"]:
-            errors.append(f"Card {self.id}: invalid difficulty level '{self.difficulty}'")
-        
-        if not isinstance(self.related_cards, list):
-            errors.append(f"Card {self.id}: related_cards must be a list")
-        
+            errors.append(f"{card_ref}: missing required field: back")
+        elif len(self.back) > MAX_BACK_LENGTH:
+            errors.append(
+                f"{card_ref}: back exceeds maximum length of {MAX_BACK_LENGTH} characters "
+                f"(current: {len(self.back)})"
+            )
+
         return len(errors) == 0, errors

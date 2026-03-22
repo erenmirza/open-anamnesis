@@ -6,10 +6,10 @@ import pytest
 import tempfile
 import json
 from pathlib import Path
-from src.project import Project
-from src.deck import Deck
-from src.card import Card
-from src.compiler import Compiler
+from open_anamnesis.project import Project
+from open_anamnesis.deck import Deck
+from open_anamnesis.card import Card
+from open_anamnesis.compiler import Compiler
 
 
 class TestProject:
@@ -41,32 +41,34 @@ class TestCard:
         """Test creating a card"""
         card_data = {
             "id": "test_001",
+            "display_name": "Test Card",
             "front": "Test question?",
-            "back": "Test answer",
-            "tags": ["test"],
-            "difficulty": "easy"
+            "back": "Test answer"
         }
-        
+
         card = Card(card_data)
         assert card.id == "test_001"
+        assert card.display_name == "Test Card"
         assert card.front == "Test question?"
         assert card.back == "Test answer"
-    
+
     def test_card_validation(self):
         """Test card validation"""
         # Valid card
         valid_card = Card({
             "id": "test_001",
+            "display_name": "Test Card",
             "front": "Question?",
             "back": "Answer",
         })
         is_valid, errors = valid_card.validate()
         assert is_valid
         assert len(errors) == 0
-        
-        # Invalid card - missing front
+
+        # Invalid card - missing display_name
         invalid_card = Card({
             "id": "test_002",
+            "front": "Question?",
             "back": "Answer",
         })
         is_valid, errors = invalid_card.validate()
@@ -80,29 +82,35 @@ class TestDeck:
         with tempfile.TemporaryDirectory() as tmpdir:
             deck_path = Path(tmpdir)
             deck_path.mkdir(exist_ok=True)
-            
-            # Create deck.yml
+
+            # Create _deck.yml
             import yaml
             deck_config = {
                 "name": "Test Deck",
                 "description": "Test deck",
                 "depends_on": []
             }
-            with open(deck_path / "deck.yml", "w") as f:
+            with open(deck_path / "_deck.yml", "w") as f:
                 yaml.dump(deck_config, f)
-            
-            # Create cards.json
-            cards = [{
-                "id": "card_001",
+
+            # Create individual card files
+            card_data = {
+                "display_name": "Test Card 1",
                 "front": "Q1?",
                 "back": "A1"
-            }]
-            with open(deck_path / "cards.json", "w") as f:
-                json.dump(cards, f)
-            
+            }
+            with open(deck_path / "card_001.json", "w") as f:
+                json.dump(card_data, f)
+
+            # Create card.yml
+            card_metadata = {"depends_on": None}
+            with open(deck_path / "card_001.yml", "w") as f:
+                yaml.dump(card_metadata, f)
+
             deck = Deck(str(deck_path))
             assert deck.name == deck_path.name
             assert len(deck.get_cards()) == 1
+            assert deck.get_cards()[0]["id"] == "card_001"
 
 
 class TestCompiler:

@@ -47,15 +47,19 @@ def compile_cmd(project_dir="."):
     try:
         if not Path(project_dir).exists():
             raise FileNotFoundError(f"Project directory not found: {project_dir}")
-        
+
         compiler = Compiler(project_dir)
         results = compiler.compile()
-        
+
         if results["success"]:
+            # Build the manifest after successful compilation
+            builder = Builder(project_dir)
+            builder.build()
+
             click.secho(f"SUCCESS: Compilation successful!", fg="green")
             click.echo(f"  - Validated {results['decks_count']} deck(s)")
             click.echo(f"  - Validated {results['cards_count']} card(s)")
-            click.echo(f"  - No errors found")
+            click.echo(f"  - Generated manifest in build/ directory")
         else:
             click.secho(f"ERROR: Compilation failed with {len(results['errors'])} error(s)", fg="red")
             for error in results["errors"]:

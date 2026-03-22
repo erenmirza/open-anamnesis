@@ -33,26 +33,37 @@ anamnesis-build
 
 ```
 my_project/
-├── project.yml          # name, description, version
+├── project.yml                 # name, description, version
 ├── decks/
 │   └── deck_name/
-│       ├── deck.yml     # name, description, depends_on
-│       └── cards.json   # array of cards
-└── build/               # generated files
+│       ├── _deck.yml           # name, description, depends_on
+│       ├── card_name.json      # card front and back
+│       └── card_name.yml       # card depends_on
+└── build/                      # generated files
 ```
 
-**Card Schema (cards.json)**
+**Card Schema**
+
+Each card consists of two files:
+
+`card_name.json`:
 ```json
-[
-  {
-    "id": "unique_id",
-    "front": "Question",
-    "back": "Answer",
-    "tags": ["optional"],
-    "difficulty": "easy|medium|hard"
-  }
-]
+{
+  "display_name": "Card Title",
+  "front": "Question",
+  "back": "Answer"
+}
 ```
+
+`card_name.yml`:
+```yaml
+depends_on: other_card_id  # or null for first card
+```
+
+**Character Limits**
+- `display_name`: 60 characters
+- `front`: 200 characters
+- `back`: 500 characters
 
 ## Commands
 
@@ -66,10 +77,12 @@ anamnesis-build [-d DIR] [-p PORT]         # Build and serve (default: port 5000
 
 The compiler checks for:
 - Valid YAML and JSON syntax
-- Required card fields (id, front, back)
+- Required card fields (display_name, front, back)
+- Character limits for all text fields
 - Unique card IDs within decks
-- Valid dependency resolution
-- No circular dependencies
+- Valid dependency resolution (decks can have multiple dependencies, cards only one)
+- Cards cannot reference cards in other decks
+- Each deck must have exactly one first card (no dependency)
 
 ## Development
 

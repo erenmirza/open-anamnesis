@@ -4,24 +4,14 @@ This directory contains example Anamnesis projects that demonstrate the platform
 
 ## Running Examples
 
-### 1. Basic Project
-
-The simplest example with one deck:
-
-```bash
-cd basic_project
-anamnesis-compile    # Validate
-anamnesis-build      # Build and run
-```
-
-### 2. Multi-Deck Project
+### Python Learning Path
 
 Example with multiple decks and dependencies:
 
 ```bash
-cd multi_deck_project
-anamnesis-compile
-anamnesis-build
+cd python_learning_path
+anamnesis compile
+anamnesis build
 ```
 
 ## Creating Your Own

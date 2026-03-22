@@ -6,10 +6,10 @@ import pytest
 import tempfile
 import json
 from pathlib import Path
-from src.project import Project
-from src.deck import Deck
-from src.card import Card
-from src.compiler import Compiler
+from open_anamnesis.project import Project
+from open_anamnesis.deck import Deck
+from open_anamnesis.card import Card
+from open_anamnesis.compiler import Compiler
 
 
 class TestProject:

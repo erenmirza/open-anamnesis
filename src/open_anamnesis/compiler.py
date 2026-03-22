@@ -46,9 +46,12 @@ class Compiler:
                 
                 cards_count += len(deck.get_cards())
             
-            # Validate dependencies
+            # Validate deck dependencies
             self._validate_dependencies()
-            
+
+            # Validate card dependencies
+            self._validate_card_dependencies()
+
         except Exception as e:
             self.errors.append(f"Compilation error: {e}")
         
@@ -86,17 +89,68 @@ class Compiler:
     def _validate_dependencies(self) -> None:
         """Validate deck dependencies are valid"""
         deck_names = self.project.list_decks()
-        
+
         for deck_name in deck_names:
             deck_path = self.project.decks_dir / deck_name
             deck = Deck(str(deck_path))
-            
+
             depends_on = deck.config.get("depends_on", [])
             for dep in depends_on:
                 if dep not in deck_names:
                     self.errors.append(
                         f"Deck '{deck_name}' depends on unknown deck '{dep}'"
                     )
+
+    def _validate_card_dependencies(self) -> None:
+        """Validate card dependencies are valid"""
+        deck_names = self.project.list_decks()
+
+        for deck_name in deck_names:
+            deck_path = self.project.decks_dir / deck_name
+            deck = Deck(str(deck_path))
+            cards = deck.get_cards()
+
+            # Build a set of card IDs in this deck
+            card_ids = {card["id"] for card in cards}
+
+            # Check each card's dependencies
+            first_card_found = False
+            for card in cards:
+                card_id = card["id"]
+                depends_on = card.get("depends_on")
+
+                # Check if this is the first card (no dependency)
+                if depends_on is None:
+                    if first_card_found:
+                        self.errors.append(
+                            f"Deck '{deck_name}': Multiple cards have no dependency. Only the first card should have no dependency."
+                        )
+                    first_card_found = True
+                else:
+                    # Cards can only have one dependency (must be a string)
+                    if not isinstance(depends_on, str):
+                        self.errors.append(
+                            f"Deck '{deck_name}', Card '{card_id}': depends_on must be a single card ID (string), not a list"
+                        )
+                        continue
+
+                    # Check that the dependency exists in this deck
+                    if depends_on not in card_ids:
+                        self.errors.append(
+                            f"Deck '{deck_name}', Card '{card_id}': depends on unknown card '{depends_on}'"
+                        )
+
+                    # Check that card doesn't depend on itself
+                    if depends_on == card_id:
+                        self.errors.append(
+                            f"Deck '{deck_name}', Card '{card_id}': cannot depend on itself"
+                        )
+
+            # Ensure at least one card has no dependency (first card)
+            if cards and not first_card_found:
+                self.errors.append(
+                    f"Deck '{deck_name}': No first card found. At least one card must have no dependency."
+                )
     
     def get_dependency_graph(self) -> Dict[str, List[str]]:
         """Get dependency graph for all decks"""

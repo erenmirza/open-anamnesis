@@ -76,26 +76,33 @@ venv/
         # Create example deck structure
         example_deck = project_path / "decks" / "getting_started"
         example_deck.mkdir(exist_ok=True)
-        
-        # Create deck.yml
+
+        # Create _deck.yml
         deck_config = {
             "name": "Getting Started",
             "description": "Your first deck",
             "depends_on": [],
         }
-        
-        with open(example_deck / "deck.yml", "w", encoding="utf-8") as f:
+
+        with open(example_deck / "_deck.yml", "w", encoding="utf-8") as f:
             yaml.dump(deck_config, f, default_flow_style=False)
         
-        # Create example card
-        example_card = {
-            "id": "card_001",
+        # Create example card files
+        example_card_data = {
+            "display_name": "Anamnesis Overview",
             "front": "What is Anamnesis?",
             "back": "Anamnesis is a platform for building and managing flashcard projects with dependency management.",
-            "tags": ["getting_started"],
         }
-        
-        with open(example_deck / "cards.json", "w", encoding="utf-8") as f:
-            json.dump([example_card], f, indent=2)
-        
+
+        with open(example_deck / "what_is_anamnesis.json", "w", encoding="utf-8") as f:
+            json.dump(example_card_data, f, indent=2)
+
+        # Create card metadata file
+        card_metadata = {
+            "depends_on": None
+        }
+
+        with open(example_deck / "what_is_anamnesis.yml", "w", encoding="utf-8") as f:
+            yaml.dump(card_metadata, f, default_flow_style=False)
+
         return Project(str(project_path))
