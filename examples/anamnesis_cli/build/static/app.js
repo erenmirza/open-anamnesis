@@ -5,6 +5,7 @@ let currentTestIndex = 0;
 let testAnswers = {};
 let testQuestionOptions = {}; // Store shuffled options for each question
 let shuffledQuestions = []; // Store shuffled order of questions
+let sortedLearnCards = []; // Store dependency-sorted cards for learn mode
 let allDecks = [];
 let filteredDecks = [];
 let searchQuery = '';
@@ -291,6 +292,10 @@ function renderCardsList() {
 
 function startLearning() {
     currentCardIndex = 0;
+
+    // Sort cards by dependency order
+    sortedLearnCards = topologicalSortCards(currentDeck.cards);
+
     hideAllViews();
     document.getElementById('learn-view').classList.remove('hidden');
     showCard();
@@ -302,8 +307,8 @@ function startTest() {
     testAnswers = {};
     testQuestionOptions = {};
 
-    // Shuffle the questions at the start of the test
-    shuffledQuestions = [...currentDeck.cards].sort(() => Math.random() - 0.5);
+    // Sort questions by dependency order
+    shuffledQuestions = topologicalSortCards(currentDeck.cards);
 
     hideAllViews();
     document.getElementById('test-view').classList.remove('hidden');
@@ -312,7 +317,7 @@ function startTest() {
 }
 
 function updateLearningProgress() {
-    const progress = ((currentCardIndex + 1) / currentDeck.cards.length) * 100;
+    const progress = ((currentCardIndex + 1) / sortedLearnCards.length) * 100;
     document.getElementById('learn-progress').style.width = progress + '%';
 }
 
@@ -324,15 +329,15 @@ function updateTestProgress() {
 }
 
 function showCard() {
-    if (currentCardIndex >= currentDeck.cards.length) {
+    if (currentCardIndex >= sortedLearnCards.length) {
         showCompletionMessage('Learning session complete!', 'You\'ve reviewed all cards in this deck.');
         backToDeck();
         return;
     }
 
-    const card = currentDeck.cards[currentCardIndex];
+    const card = sortedLearnCards[currentCardIndex];
     document.getElementById('current-card').textContent = currentCardIndex + 1;
-    document.getElementById('total-cards').textContent = currentDeck.cards.length;
+    document.getElementById('total-cards').textContent = sortedLearnCards.length;
     document.getElementById('card-front').textContent = card.front;
     document.getElementById('card-back').textContent = card.back;
 
@@ -348,11 +353,12 @@ function flipCard(element) {
 }
 
 function nextCard() {
-    if (currentCardIndex < currentDeck.cards.length - 1) {
+    if (currentCardIndex < sortedLearnCards.length - 1) {
         currentCardIndex++;
         showCard();
     } else {
-        showCard(); // This will trigger the completion message
+        currentCardIndex++;
+        showCard(); // This will trigger the completion message and return to deck
     }
 }
 
